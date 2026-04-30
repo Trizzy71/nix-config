@@ -65,6 +65,7 @@
       cat  = "bat";
       ".." = "cd ..";
       hms  = "home-manager switch --flake ~/.config/home-manager";
+      ff   = "fastfetch";
     };
   };
 
