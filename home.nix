@@ -54,6 +54,10 @@
   # ---------------------------------------------------------------------------
   programs.zsh = {
     enable = true;
+    autosuggestion = {
+      enable = true;
+    };
+    syntaxHighlighting.enable = true;
     # Shortcuts!
     shellAliases = {
       ll   = "ls -ls";
@@ -66,6 +70,7 @@
 
   programs.kitty = {
     enable = true;
+    theme = "Tokyo Night";
     settings = {
       # Background Stuff
       dynamic_background_opacity = true;
@@ -143,7 +148,18 @@
     '';
   };
 
-  # ---------------------------------------------------------------------------
+  ##########
+  #  -LF-  #
+  ##########
+  # This setting just lets the `lf` command see hidden files and directories
+
+  programs.lf = {
+    enable = true;
+    settings = {
+      hidden = true;
+    };
+  };
+
   # BAT
   # bat is like `cat` but with syntax highlighting and line numbers.
   # home-manager manages its config here.
