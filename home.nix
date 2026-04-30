@@ -5,25 +5,25 @@
   home.homeDirectory = "/Users/tristan";
   home.stateVersion = "25.11";
 
-  # ---------------------------------------------------------------------------
-  # PACKAGES
-  # These are "unmanaged" packages — Nix installs them but doesn't configure
-  # them. Great for simple CLI tools that don't need any setup.
-  #
-  # GROWTH AREA: As your config grows, you might move some of these into
-  # dedicated `programs.<name>` blocks below (like we did for neovim and bat)
-  # which gives you Nix-managed config files for each tool.
-  # ---------------------------------------------------------------------------
+  ################
+  #  -PACKAGES-  #
+  ################
+  # These are "unmanaged" packages, no setup.
+  # For configuration, use "programs" below for nix managed configs
+  
   home.packages = with pkgs; [
-    nano       # simple terminal text editor, good fallback
+    nano       # simple terminal text editor
     wget       # download files from the terminal, e.g: wget https://example.com/file.zip
-    lf         # terminal file manager, navigate folders with keyboard
-    fzf        # fuzzy finder — powers ctrl+r history search and more
-    btop       # beautiful resource monitor (cpu, ram, etc)
+    lf         # keyboard driven file browser
+    fzf        # fuzzy finder
+    btop       # resource monitor
     asciiquarium
     cmatrix
-    tldr
-    fastfetch
+    tldr       # too long didn't read
+    fastfetch  # quick id
+    # Personal Projects
+    zig        # zig, dude
+    zls        # zig language server
   ];
 
   # ---------------------------------------------------------------------------
@@ -54,7 +54,7 @@
   # ---------------------------------------------------------------------------
   programs.zsh = {
     enable = true;
-  # Shortcuts!
+    # Shortcuts!
     shellAliases = {
       ll   = "ls -ls";
       vim  = "nvim";
@@ -67,12 +67,22 @@
   programs.kitty = {
     enable = true;
     settings = {
-  # Background Stuff
+      # Background Stuff
       dynamic_background_opacity = true;
-      background_opacity         = "0.8";
-      background_blur            = 10;
-  # Fonts
-      font_size                  = 14;
+      background_opacity    = "0.7";
+      background_blur       = 10;
+      # Fonts
+      font_size             = 14;
+      font_family           = "JetBrainsMono";
+      # Feel
+      cursor_blink_interval = "0.5";
+      cursor_shape          = "beam";
+      scrollback_lines      = 10000;
+      enable_audio_bell     = false;
+      # Layout
+      enabled_layouts       = "tall,stack";
+      # Colors
+      tab_bar_style         = "powerline";
     };
   };
 
