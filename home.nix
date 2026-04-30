@@ -75,7 +75,7 @@
     settings = {
       # Background Stuff
       dynamic_background_opacity = true;
-      background_opacity    = "0.7";
+      background_opacity    = "0.8";
       background_blur       = 10;
       # Fonts
       font_size             = 14;
