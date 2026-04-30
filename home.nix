@@ -103,11 +103,11 @@
       set relativenumber  " show distance to other lines (useful for jumping)
       set cursorline      " highlight the line your cursor is on
       set wrap            " wrap long lines visually (doesn't change the file)
-      set scrolloff=8     " keep 8 lines visible above/below cursor when scrolling
+      set scrolloff=5     " keep 5 lines visible above/below cursor when scrolling
 
       " --- Indentation ---
-      set tabstop=4       " a tab character appears as 4 spaces wide
-      set shiftwidth=4    " when you press >>, indent by 4 spaces
+      set tabstop=2       " a tab character appears as 2 spaces wide
+      set shiftwidth=2    " when you press >>, indent by 2 spaces
       set expandtab       " pressing tab inserts spaces, not a tab character
       set smartindent     " auto-indent new lines intelligently
 
@@ -124,9 +124,6 @@
 
       " --- Colorscheme ---
       " 'habamax' is a clean dark theme included with neovim, no plugins needed.
-      " GROWTH AREA: install a plugin like `catppuccin` or `tokyonight`
-      " for a much more polished look.
-      colorscheme habamax
 
       " --- Quality of Life ---
       set mouse=a         " enable mouse support (click to move cursor, scroll)
