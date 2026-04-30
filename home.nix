@@ -39,7 +39,10 @@
     EDITOR = "nvim";   # when git asks you to write a commit message, nvim opens
   };
 
-  # ---------------------------------------------------------------------------
+  # ----------------------------//==========\\------------------------------- #
+  # ---------------------------||  PROGRAMS  ||------------------------------ #
+  # ----------------------------\\==========//------------------------------- #
+
   # ZSH
   # home-manager can fully manage your zsh config. Enabling this means
   # home-manager writes your ~/.zshrc for you from the options below.
@@ -51,15 +54,25 @@
   # ---------------------------------------------------------------------------
   programs.zsh = {
     enable = true;
-
-    # Handy shortcuts. Type the alias instead of the full command.
-    # e.g. typing `ll` runs `ls -la`
+  # Shortcuts!
     shellAliases = {
-      ll   = "ls -la";          # long list with hidden files
-      vim  = "nvim";            # typing vim opens neovim instead
-      cat  = "bat";             # typing cat uses bat (prettier output)
-      ".." = "cd ..";           # go up one folder
-      hms  = "home-manager switch --flake ~/.config/home-manager"; # apply your config
+      ll   = "ls -ls";
+      vim  = "nvim";
+      cat  = "bat";
+      ".." = "cd ..";
+      hms  = "home-manager switch --flake ~/.config/home-manager";
+    };
+  };
+
+  programs.kitty = {
+    enable = true;
+    settings = {
+  # Background Stuff
+      dynamic_background_opacity = true;
+      background_opacity         = "0.8";
+      background_blur            = 10;
+  # Fonts
+      font_size                  = 14;
     };
   };
 
@@ -78,8 +91,6 @@
   # ---------------------------------------------------------------------------
   programs.neovim = {
     enable      = true;
-    viAlias     = true;   # typing `vi` opens neovim
-    vimAlias    = true;   # typing `vim` opens neovim
     withRuby    = false;
     withPython3 = false;
 
@@ -166,6 +177,20 @@
       };
     };
   };
+
+  # ---------------------[[BROKEN]]--------------------------------------------
+  # Tailscale
+  # don't know anything about how to take care of this yet
+  #----------------------------------------------------------------------------
+  # programs.tailscale = {
+  #   enable = true;
+  # };
+  #### I want the above  to work but i think it needs to be environment.systemPackages with []
+  # services.tailscale.enable = true;
+  # environment.systemPackages = [
+  #   pkgs.tailscale
+  # ];
+
 
   # ---------------------------------------------------------------------------
   # home-manager manages itself. Always keep this.
