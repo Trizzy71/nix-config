@@ -69,6 +69,19 @@
     };
   };
 
+  programs.starship = {
+    enable = true;
+    settings = {
+      git_branch = {
+        symbol = " ";
+        disabled = false;
+      };
+      git_status = {
+        disabled = false;
+      };
+    };
+  };
+
   programs.kitty = {
     enable = true;
     theme = "Tokyo Night";
