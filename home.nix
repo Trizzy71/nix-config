@@ -74,6 +74,8 @@
         symbol = " ";
         disabled = false;
       };
+    };
+  };
 
   ###########
   # -KITTY- #
@@ -86,8 +88,8 @@
     settings = {
       # Background Stuff
       dynamic_background_opacity = true;
-      background_opacity    = "0.8";
-      background_blur       = 10;
+      background_opacity    = "0.9";
+      background_blur       = 5;
       # Fonts
       font_size             = 14;
       font_family           = "JetBrainsMono";
