@@ -55,7 +55,7 @@
     shellAliases = {
       ll   = "ls -ls";
       vim  = "nvim";
-      cat  = "bat";
+      # cat  = "bat";
       ".." = "cd ..";
       hms  = "home-manager switch --flake ~/.config/home-manager";
       ff   = "fastfetch";
