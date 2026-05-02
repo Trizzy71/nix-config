@@ -5,10 +5,9 @@
   home.homeDirectory = "/Users/tristan";
   home.stateVersion = "25.11";
 
-  ################
-  #  -PACKAGES-  #
-  ################
-  # These are "unmanaged" packages, no setup.
+  ##########################
+  #  -UNMANAGED PACKAGES-  #
+  ##########################
   # For configuration, use "programs" below for nix managed configs
   
   home.packages = with pkgs; [
@@ -26,15 +25,12 @@
     zls        # zig language server
   ];
 
-  # ---------------------------------------------------------------------------
-  # SESSION VARIABLES
-  # These are environment variables set every time you open a shell.
-  # EDITOR tells programs (like git) which editor to open by default.
-  #
-  # GROWTH AREA: You can add things like:
-  #   LANG = "en_US.UTF-8";
-  #   PATH = "$HOME/.local/bin:$PATH";  # add custom script folders to PATH
-  # ---------------------------------------------------------------------------
+  #######################
+  # -SESSION VARIABLES- #
+  #######################
+  # Environment variables are set every time you open a shell
+  # Growth: you can add `LANG = "en_US.UTF-8";`
+
   home.sessionVariables = {
     EDITOR = "nvim";   # when git asks you to write a commit message, nvim opens
   };
@@ -43,15 +39,12 @@
   # ---------------------------||  PROGRAMS  ||------------------------------ #
   # ----------------------------\\==========//------------------------------- #
 
-  # ZSH
-  # home-manager can fully manage your zsh config. Enabling this means
-  # home-manager writes your ~/.zshrc for you from the options below.
-  #
-  # GROWTH AREA: You can add a lot more here:
-  #   oh-my-zsh or starship prompt (a beautiful, fast prompt)
-  #   plugins = [ "git" "z" "syntax-highlighting" ];
-  #   initExtra = '' ... ''; for any raw zsh code you want appended
-  # ---------------------------------------------------------------------------
+  #########
+  # -ZSH- #
+  #########
+  # This is the shell, I enabled syntax highlighting here to make things more readable
+  # I also added some shell aliases to make it easier to write common commands
+
   programs.zsh = {
     enable = true;
     autosuggestion = {
@@ -69,6 +62,11 @@
     };
   };
 
+  ##############
+  # -STARSHIP- #
+  ##############
+  # shell prompt, shows git status
+
   programs.starship = {
     enable = true;
     settings = {
@@ -76,11 +74,11 @@
         symbol = " ";
         disabled = false;
       };
-      git_status = {
-        disabled = false;
-      };
-    };
-  };
+
+  ###########
+  # -KITTY- #
+  ###########
+  # terminal emulator, I have some configuration applied to make it more enjoyable
 
   programs.kitty = {
     enable = true;
@@ -105,19 +103,11 @@
     };
   };
 
-  # ---------------------------------------------------------------------------
-  # NEOVIM
-  # home-manager has deep support for neovim. `enable = true` installs it
-  # and everything else here writes your init.lua config file automatically.
-  #
-  # `viAlias` and `vimAlias` mean you can type `vi` or `vim` and neovim opens.
-  # (This works alongside the shellAlias above — belt and suspenders.)
-  #
-  # GROWTH AREA: This is where neovim configs can grow a lot:
-  #   plugins = [ pkgs.vimPlugins.lazy-nvim ... ]; to add plugins
-  #   popular first plugins: nvim-treesitter (better syntax),
-  #   telescope.nvim (fuzzy file finding), nvim-lspconfig (IDE features)
-  # ---------------------------------------------------------------------------
+  ############
+  # -NEOVIM- #
+  ############
+  # terminal text editor, can be a bit faster than nano but they keybinds are rough
+
   programs.neovim = {
     enable      = true;
     withRuby    = false;
@@ -174,13 +164,11 @@
     };
   };
 
-  # BAT
+  #########
+  # -BAT- #
+  #########
   # bat is like `cat` but with syntax highlighting and line numbers.
-  # home-manager manages its config here.
-  #
-  # GROWTH AREA: bat has many themes. Run `bat --list-themes` in your terminal
-  # to preview them all. Some popular ones: Dracula, gruvbox-dark, Nord.
-  # ---------------------------------------------------------------------------
+
   programs.bat = {
     enable = true;
     config = {
@@ -190,15 +178,11 @@
     };
   };
 
-  # ---------------------------------------------------------------------------
-  # GIT
-  # Even basic git config is worth managing here so it travels with you.
-  #
-  # GROWTH AREA: you can add:
-  #   signing.key and signing.signByDefault for GPG commit signing
-  #   aliases = { lg = "log --oneline --graph"; };
-  #   delta (a beautiful git diff viewer) via programs.git.delta.enable
-  # ---------------------------------------------------------------------------
+  #########
+  # -GIT- #
+  #########
+  # git config, this is for managing the dotfiles
+
   programs.git = {
     enable    = true;
     settings = {
@@ -214,20 +198,6 @@
       };
     };
   };
-
-  # ---------------------[[BROKEN]]--------------------------------------------
-  # Tailscale
-  # don't know anything about how to take care of this yet
-  #----------------------------------------------------------------------------
-  # programs.tailscale = {
-  #   enable = true;
-  # };
-  #### I want the above  to work but i think it needs to be environment.systemPackages with []
-  # services.tailscale.enable = true;
-  # environment.systemPackages = [
-  #   pkgs.tailscale
-  # ];
-
 
   # ---------------------------------------------------------------------------
   # home-manager manages itself. Always keep this.
