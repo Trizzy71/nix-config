@@ -1,8 +1,7 @@
 {
-  description = "Home Manager configuration of tristan";
+  description = "Trizzy's nix config";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -10,22 +9,33 @@
     };
   };
 
-  outputs =
-    { nixpkgs, home-manager, ... }:
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      homeConfigurations."tristan" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+  outputs = { nixpkgs, home-manager, ... }: {
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home.nix ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-      };
+    # Mac — standalone home-manager
+    homeConfigurations."tristan@macbook" = home-manager.lib.homeManagerConfiguration {
+      pkgs    = nixpkgs.legacyPackages."aarch64-darwin";
+      modules = [ ./hosts/macbook/home.nix ];
     };
+
+    # Arch — standalone home-manager on Linux
+    homeConfigurations."tristan@arch" = home-manager.lib.homeManagerConfiguration {
+      pkgs    = nixpkgs.legacyPackages."x86_64-linux";
+      modules = [ ./hosts/arch/home.nix ];
+    };
+
+#    # Dell — NixOS
+#    nixosConfigurations."dell" = nixpkgs.lib.nixosSystem {
+#      system  = "x86_64-linux";
+#      modules = [
+#        ./hosts/dell/configuration.nix
+#        home-manager.nixosModules.home-manager
+#        {
+#          home-manager.useGlobalPkgs    = true;
+#          home-manager.useUserPackages  = true;
+#          home-manager.users.tristan    = import ./hosts/dell/home.nix;
+#        }
+#      ];
+#    };
+
+  };
 }
