@@ -15,7 +15,7 @@
     tldr
     fastfetch
     asciiquarium
-    cmatrix
+#    cmatrix
   ];
 
   #######################
