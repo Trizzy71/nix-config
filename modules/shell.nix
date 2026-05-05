@@ -75,7 +75,7 @@
       background_opacity         = "0.9";
       background_blur            = 5;
       font_size                  = 14;
-      font_family                = "JetBrainsMono";
+      font_family                = "JetBrainsMono Nerd Font";
       cursor_blink_interval      = "0.5";
       cursor_shape               = "beam";
       scrollback_lines           = 10000;

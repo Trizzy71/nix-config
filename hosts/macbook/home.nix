@@ -14,5 +14,9 @@
   home.homeDirectory = "/Users/tristan";
   home.stateVersion  = "25.11";
 
+  home.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
   programs.home-manager.enable = true;
 }
