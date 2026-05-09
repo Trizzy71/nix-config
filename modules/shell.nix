@@ -69,7 +69,7 @@
 
   programs.kitty = {
     enable = true;
-    theme  = "Tokyo Night";
+    themeFile  = "tokyo-night";
     settings = {
       dynamic_background_opacity = true;
       background_opacity         = "0.9";
@@ -114,29 +114,29 @@
   ############
   # terminal text editor, can be a bit faster than nano but they keybinds are rough
 
-  programs.neovim = {
-    enable      = true;
-    withRuby    = false;
-    withPython3 = false;
-    extraConfig = ''
-      set number
-      set relativenumber
-      set cursorline
-      set wrap
-      set scrolloff=5
-      set tabstop=2
-      set shiftwidth=2
-      set expandtab
-      set smartindent
-      set ignorecase
-      set smartcase
-      set hlsearch
-      set incsearch
-      set clipboard=unnamedplus
-      set mouse=a
-      set undofile
-      set splitright
-      set splitbelow
-    '';
-  };
+#  programs.neovim = {
+#    enable      = true;
+#    withRuby    = false;
+#    withPython3 = false;
+#    extraConfig = ''
+#      set number
+#      set relativenumber
+#      set cursorline
+#      set wrap
+#      set scrolloff=5
+#      set tabstop=2
+#      set shiftwidth=2
+#      set expandtab
+#      set smartindent
+#      set ignorecase
+#      set smartcase
+#      set hlsearch
+#      set incsearch
+#      set clipboard=unnamedplus
+#      set mouse=a
+#      set undofile
+#      set splitright
+#      set splitbelow
+#    '';
+#  };
 }
