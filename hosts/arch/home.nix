@@ -9,8 +9,8 @@
     ../../modules/zig.nix
   ];
 
-  home.username      = "tristan";
-  home.homeDirectory = "/home/tristan";
+  home.username      = "trizzy";
+  home.homeDirectory = "/home/trizzy";
   home.stateVersion  = "25.11";
 
   programs.home-manager.enable = true;
