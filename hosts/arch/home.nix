@@ -7,6 +7,7 @@
     ../../modules/shell.nix
     ../../modules/git.nix
     ../../modules/zig.nix
+    ../../modules/neovim.nix
   ];
 
   home.username      = "trizzy";
