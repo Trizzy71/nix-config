@@ -69,7 +69,7 @@
 
   programs.kitty = {
     enable = true;
-    themeFile  = "tokyo-night";
+    themeFile  = "Dracula";
     settings = {
       dynamic_background_opacity = true;
       background_opacity         = "0.9";
