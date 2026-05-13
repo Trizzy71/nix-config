@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
-  ##########################
-  #  -UNMANAGED PACKAGES-  #
-  ##########################
-  # For configuration, use "programs" below for nix managed configs
+##########################
+#  -UNMANAGED PACKAGES-  #
+##########################
+# For configuration, use "programs" below for nix managed configs
 
 {
   home.packages = with pkgs; [
@@ -38,11 +38,11 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
-      ll   = "ls -ls";
-      vim  = "nvim";
+      ll = "ls -ls";
+      vim = "nvim";
       ".." = "cd ..";
-      ff   = "fastfetch";
-      hms  = "home-manager switch --flake ~/.config/nix-config#tristan@macbook";
+      ff = "fastfetch";
+      hms = "home-manager switch --flake ~/.config/nix-config#tristan@macbook";
     };
   };
 
@@ -55,7 +55,7 @@
     enable = true;
     settings = {
       git_branch = {
-        symbol   = " ";
+        symbol = " ";
         disabled = false;
       };
     };
@@ -68,19 +68,19 @@
 
   programs.kitty = {
     enable = true;
-    themeFile  = "Dracula";
+    themeFile = "Dracula";
     settings = {
       dynamic_background_opacity = true;
-      background_opacity         = "0.9";
-      background_blur            = 5;
-      font_size                  = 14;
-      font_family                = "JetBrainsMono Nerd Font";
-      cursor_blink_interval      = "0.5";
-      cursor_shape               = "beam";
-      scrollback_lines           = 10000;
-      enable_audio_bell          = false;
-      enabled_layouts            = "tall,stack";
-      tab_bar_style              = "powerline";
+      background_opacity = "0.9";
+      background_blur = 5;
+      font_size = 14;
+      font_family = "JetBrainsMono Nerd Font";
+      cursor_blink_interval = "0.5";
+      cursor_shape = "beam";
+      scrollback_lines = 10000;
+      enable_audio_bell = false;
+      enabled_layouts = "tall,stack";
+      tab_bar_style = "powerline";
     };
   };
 
@@ -92,9 +92,9 @@
   programs.bat = {
     enable = true;
     config = {
-      theme       = "TwoDark";
+      theme = "TwoDark";
       italic-text = "always";
-      pager       = "less -FR";
+      pager = "less -FR";
     };
   };
 
@@ -104,7 +104,7 @@
   # This setting just lets the `lf` command see hidden files and directories
 
   programs.lf = {
-    enable          = true;
+    enable = true;
     settings.hidden = true;
   };
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 # All of my developer tools
 # Rust, Zig, LS deps
