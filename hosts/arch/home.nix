@@ -6,7 +6,7 @@
   imports = [
     ../../modules/shell.nix
     ../../modules/git.nix
-    ../../modules/zig.nix
+    ../../modules/dev-tools.nix
     ../../modules/neovim.nix
     ../../modules/wofi.nix
   ];

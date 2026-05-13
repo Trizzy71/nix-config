@@ -6,6 +6,7 @@
   imports = [
     ../../modules/shell.nix
     ../../modules/git.nix
+    ../../modules/neovim.nix
   ];
 
   home.username      = "tristan";
