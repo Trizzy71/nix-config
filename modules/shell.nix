@@ -62,27 +62,43 @@
   };
 
   ###########
-  # -KITTY- #
+  # -ALACRITTY?- #
   ###########
   # terminal emulator, I have some configuration applied to make it more enjoyable
 
-  programs.kitty = {
-    enable = true;
-    themeFile  = "Dracula";
-    settings = {
-      dynamic_background_opacity = true;
-      background_opacity         = "0.9";
-      background_blur            = 5;
-      font_size                  = 14;
-      font_family                = "JetBrainsMono Nerd Font";
-      cursor_blink_interval      = "0.5";
-      cursor_shape               = "beam";
-      scrollback_lines           = 10000;
-      enable_audio_bell          = false;
-      enabled_layouts            = "tall,stack";
-      tab_bar_style              = "powerline";
+programs.alacritty = {
+  enable = true;
+  settings = {
+    window = {
+      opacity = 0.9;
+      padding = { x = 10; y = 10; };
     };
+    font = {
+      normal = {
+        family = "JetBrainsMono Nerd Font";
+        style = "Regular";
+      };
+      size = 14.0;
+    };
+    colors.dracula = {
+      primary = {
+        background = "#282a36";
+        foreground = "#f8f8f2";
+      };
+      normal = {
+        black   = "#21222c";
+        red     = "#ff5555";
+        green   = "#50fa7b";
+        yellow  = "#f1fa8c";
+        blue    = "#bd93f9";
+        magenta = "#ff79c6";
+        cyan    = "#8be9fd";
+        white   = "#f8f8f2";
+      };
+    };
+    colors = "dracula";
   };
+};
 
   #########
   # -BAT- #
