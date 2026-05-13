@@ -8,8 +8,7 @@
     ../../modules/shell.nix
     ../../modules/neovim.nix
     ../../modules/git.nix
-    ../../modules/zig.nix
-    ../../modules/rust.nix
+    ../../modules/dev-tools.nix
   ];
 
   home.username      = "tristan";
