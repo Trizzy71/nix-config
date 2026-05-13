@@ -9,6 +9,7 @@
     ../../modules/neovim.nix
     ../../modules/git.nix
     ../../modules/zig.nix
+    ../../modules/rust.nix
   ];
 
   home.username      = "tristan";
