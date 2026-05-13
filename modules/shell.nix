@@ -108,35 +108,4 @@
     enable          = true;
     settings.hidden = true;
   };
-
-  ############
-  # -NEOVIM- #
-  ############
-  # terminal text editor, can be a bit faster than nano but they keybinds are rough
-
-#  programs.neovim = {
-#    enable      = true;
-#    withRuby    = false;
-#    withPython3 = false;
-#    extraConfig = ''
-#      set number
-#      set relativenumber
-#      set cursorline
-#      set wrap
-#      set scrolloff=5
-#      set tabstop=2
-#      set shiftwidth=2
-#      set expandtab
-#      set smartindent
-#      set ignorecase
-#      set smartcase
-#      set hlsearch
-#      set incsearch
-#      set clipboard=unnamedplus
-#      set mouse=a
-#      set undofile
-#      set splitright
-#      set splitbelow
-#    '';
-#  };
 }
