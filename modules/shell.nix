@@ -11,7 +11,7 @@
     wget
     lf
     fzf
-    btop
+#     btop
     tldr
     fastfetch
     asciiquarium
