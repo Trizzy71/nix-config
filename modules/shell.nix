@@ -2,7 +2,6 @@
 
 # -UNMANAGED PACKAGES-
 # For configuration, use "programs" below for nix managed configs
-
 {
   home.packages = with pkgs; [
     nano
@@ -17,7 +16,6 @@
   # -SESSION VARIABLES-
   # Environment variables are set every time you open a shell
   # Growth: you can add `LANG = "en_US.UTF-8";`
-
   home.sessionVariables = {
     EDITOR = "nvim";
   };
@@ -25,7 +23,6 @@
   # -ZSH-
   # This is the shell, I enabled syntax highlighting here to make things more readable
   # I also added some shell aliases to make it easier to write common commands
-
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -41,7 +38,6 @@
 
   # -STARSHIP-
   # shell prompt, shows git status
-
   programs.starship = {
     enable = true;
     settings = {
@@ -54,7 +50,6 @@
 
   # -KITTY-
   # terminal emulator, I have some configuration applied to make it more enjoyable
-
   programs.kitty = {
     enable = true;
     themeFile = "Dracula";
@@ -75,7 +70,6 @@
 
   # -BAT-
   # bat is like `cat` but with syntax highlighting and line numbers.
-
   programs.bat = {
     enable = true;
     config = {
@@ -85,11 +79,9 @@
     };
   };
 
-  #  -LF-  #
-  # settings.hidden = true just lets the `lf` command see hidden files and directories
-
+  #  -LF-
   programs.lf = {
     enable = true;
-    settings.hidden = true;
+    settings.hidden = true; # lets `lf` see hidden files and directories
   };
 }
