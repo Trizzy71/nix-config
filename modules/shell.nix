@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
-##########################
-#  -UNMANAGED PACKAGES-  #
-##########################
+# -UNMANAGED PACKAGES-
 # For configuration, use "programs" below for nix managed configs
 
 {
@@ -14,12 +12,9 @@
     btop
     tldr
     fastfetch
-    asciiquarium
   ];
 
-  #######################
-  # -SESSION VARIABLES- #
-  #######################
+  # -SESSION VARIABLES-
   # Environment variables are set every time you open a shell
   # Growth: you can add `LANG = "en_US.UTF-8";`
 
@@ -27,9 +22,7 @@
     EDITOR = "nvim";
   };
 
-  #########
-  # -ZSH- #
-  #########
+  # -ZSH-
   # This is the shell, I enabled syntax highlighting here to make things more readable
   # I also added some shell aliases to make it easier to write common commands
 
@@ -46,9 +39,7 @@
     };
   };
 
-  ##############
-  # -STARSHIP- #
-  ##############
+  # -STARSHIP-
   # shell prompt, shows git status
 
   programs.starship = {
@@ -61,9 +52,7 @@
     };
   };
 
-  ###########
-  # -KITTY- #
-  ###########
+  # -KITTY-
   # terminal emulator, I have some configuration applied to make it more enjoyable
 
   programs.kitty = {
@@ -84,9 +73,7 @@
     };
   };
 
-  #########
-  # -BAT- #
-  #########
+  # -BAT-
   # bat is like `cat` but with syntax highlighting and line numbers.
 
   programs.bat = {
@@ -98,10 +85,8 @@
     };
   };
 
-  ##########
   #  -LF-  #
-  ##########
-  # This setting just lets the `lf` command see hidden files and directories
+  # settings.hidden = true just lets the `lf` command see hidden files and directories
 
   programs.lf = {
     enable = true;
