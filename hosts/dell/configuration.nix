@@ -9,6 +9,7 @@
   imports = [
     # Import hardware-configuration.nix
     # This is defined in flake.nix right now
+    ../../modules/tailscale-system.nix
   ];
 
   # Systemd + EFI boot #
