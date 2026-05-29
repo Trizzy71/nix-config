@@ -8,11 +8,7 @@
 {
   imports = [
     # Import hardware-configuration.nix
-<<<<<<< HEAD
-    #  ./hardware-configuration.nix
-=======
-#    /etc/nixos/hardware-configuration.nix
->>>>>>> 232d07eb22c00626a473ec43683f01ae5608dcaa
+    # This is defined in flake.nix right now
   ];
 
   # Systemd + EFI boot #
