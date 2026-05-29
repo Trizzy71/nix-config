@@ -8,7 +8,7 @@
 {
   imports = [
     # Import hardware-configuration.nix
-    ./hardware-configuration.nix
+    #  ./hardware-configuration.nix
   ];
 
   # Systemd + EFI boot #
