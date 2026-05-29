@@ -1,11 +1,15 @@
-
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Import hardware-configuration.nix
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Import hardware-configuration.nix
+    ./hardware-configuration.nix
+  ];
 
   # Systemd + EFI boot #
   boot.loader.systemd-boot.enable = true;
@@ -34,8 +38,6 @@
     windowManager.qtile.enable = true;
   };
 
-  
-
   #### Keymap ####
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -57,8 +59,11 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tristan = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkManager" ]; # Enable ‘sudo’ for the user.
-    shell       = pkgs.zsh;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
     packages = with pkgs; [
       tree
     ];
@@ -70,14 +75,16 @@
 
   #### System Profile Packages ####
   environment.systemPackages = with pkgs; [
-    vim        #
+    vim
     # wget     # DONT TOUCH
-    alacritty  #
+    alacritty
   ];
 
   #### System state and Experimental features ####
   system.stateVersion = "25.11";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
 }
-
