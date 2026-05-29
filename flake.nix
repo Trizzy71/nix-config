@@ -14,15 +14,19 @@
     {
 
       # Mac — standalone home-manager
-      homeConfigurations."tristan@macbook" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."macbook" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-        modules = [ ./hosts/macbook/home.nix ];
+        modules = [
+          ./hosts/macbook/home.nix
+        ];
       };
 
       # Arch — standalone home-manager on Linux
-      homeConfigurations."tristan@arch" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."arch" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [ ./hosts/arch/home.nix ];
+        modules = [
+          ./hosts/arch/home.nix
+        ];
       };
 
       # Dell — NixOS
@@ -39,5 +43,21 @@
           }
         ];
       };
+
+      # # work-test - NixOS
+      # nixosConfigurations."work-test" = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+      #   modules = [
+      #     ./hosts/work-test/configuration.nix # MUST be changed to the work-test/configuration.nix
+      #     /etc/nixos/hardware-configuration.nix # this links to the default path for hardware-configuration.nix
+      #     home-manager.nixosModules.home-manager
+      #     {
+      #       home-manager.useGlobalPkgs = true;
+      #       home-manager.useUserPackages = true;
+      #       home-manager.users.tristan = import ./hosts/work-test/home.nix;
+      #     }
+      #   ];
+      # };
+
     };
 }
