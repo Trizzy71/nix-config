@@ -30,6 +30,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/dell/configuration.nix
+          /etc/nixos/hardware-configuration.nix # this links to the default path for hardware-configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
