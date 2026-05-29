@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 # Macbook
-# this file pulls these three configs into the home.nix
+# this file pulls these four .nix files into home-manager
 
 {
   imports = [
@@ -11,9 +11,9 @@
     ../../modules/dev-tools.nix
   ];
 
-  home.username      = "tristan";
+  home.username = "tristan";
   home.homeDirectory = "/Users/tristan";
-  home.stateVersion  = "25.11";
+  home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
