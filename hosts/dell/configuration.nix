@@ -8,7 +8,7 @@
 {
   imports = [
     # Import hardware-configuration.nix
-    /etc/nixos/hardware-configuration.nix
+#    /etc/nixos/hardware-configuration.nix
   ];
 
   # Systemd + EFI boot #
