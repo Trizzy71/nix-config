@@ -20,6 +20,7 @@
 
   #### Networking (nmcli | nmtui) ####
   networking.networkmanager.enable = true;
+  # boot.kernel.sysctl."net.core.rmem_max" = 2500000; # this is for higher ts throughput
 
   #### Time Zone ####
   time.timeZone = "America/Chicago";
