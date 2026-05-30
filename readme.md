@@ -1,12 +1,18 @@
 # Guide - Modules/Flake
 
-## Summary
-This repo (nix-config) is dedicated to my learning of modularization and version control
+## Overview
+This repo, `nix-config` is dedicated to my learning of modularization and version control
 My specific goals are:
 - [x] Version Controlled
 - [ ] Modular
 - [ ] Secrets usage
 - [ ] Tailscale demo for Al
+
+## Summary
+This repo contains the following components:
+- Configuration files for different machine (`macbook`, `arch`, `dell`).
+- NixOS system configs and modules
+- home-manager configurations
 
 ## Reference
 You can always reach for google but the most-used commands are here:
