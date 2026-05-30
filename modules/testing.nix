@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
-# Just fun test packages
+# -FUN PACKAGES-
 {
   home.packages = with pkgs; [
-    cmatrix
-    asciiquarium
+    cmatrix         # makes you in the matrix
+    asciiquarium    # makes the terminal a fish tank
   ];
 }
