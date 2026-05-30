@@ -10,6 +10,6 @@ My specific goals are:
 
 ## Reference
 You can always reach for google but the most-used commands are here:
-    - Rebuild: `home-manager switch --flake ~/path/to/nix-config#____` # The blank will be for `arch , dell , macbook , work-config`
+    - Rebuild: `home-manager switch --flake ~/path/to/nix-config#____` # The blank will be for `arch , dell , macbook , work-test`
     - Testing packages: `nix run nixpkgs#package-name
 
