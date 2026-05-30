@@ -9,7 +9,6 @@
   imports = [
     # Import hardware-configuration.nix
     # This is defined in flake.nix right now
-    ../../modules/tailscale-system.nix
   ];
 
   # Systemd + EFI boot #
@@ -22,7 +21,6 @@
   networking.networkmanager.enable = true;
   # boot.kernel.sysctl."net.core.rmem_max" = 2500000; # this is for higher ts throughput
 
-  #### Time Zone ####
   time.timeZone = "America/Chicago";
 
   #### Internationalisation ####
