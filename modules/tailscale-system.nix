@@ -1,4 +1,8 @@
 { ... }:
+
+# -TAILSCALE-
+# Enables the tailscale system service and automatically sets exit node
+# Still don't know whether or not they all need to be exit nodes
 {
   services.tailscale = {
     enable = true;
