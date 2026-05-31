@@ -7,16 +7,13 @@
 
 {
   imports = [
-    # Import hardware-configuration.nix
-    # This is defined in flake.nix right now
-    ../../modules/tailscale-system.nix
   ];
 
   # Systemd + EFI boot #
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "work-test"; # Define your hostname.
+  networking.hostName = "frank-test"; # Define your hostname.
 
   #### Networking (nmcli | nmtui) ####
   networking.networkmanager.enable = true;
