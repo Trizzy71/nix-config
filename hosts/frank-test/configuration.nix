@@ -62,10 +62,10 @@
   #     "wheel"
   #     "networkmanager"
   # ]; # Enable ‘sudo’ for the user.
-  shell = pkgs.zsh;
-  packages = with pkgs; [
-    tree
-  ];
+  # shell = pkgs.zsh;
+  # packages = with pkgs; [
+  #   tree
+  # ];
   # };
 
   #### Programs ####
