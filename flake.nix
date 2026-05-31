@@ -50,7 +50,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/frank-test/configuration.nix # MUST be changed to the work-test/configuration.nix
-          /etc/nixos/hardware-configuration.nix # this links to the default path for hardware-configuration.nix
+          ./hosts/frank-test/hardware-configuration.nix # this links to the default path for hardware-configuration.nix
           ./modules/tailscale-system.nix
           home-manager.nixosModules.home-manager
           {
