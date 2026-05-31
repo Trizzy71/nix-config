@@ -15,6 +15,8 @@
   networking.networkmanager.enable = true;
   time.timeZone = "America/Chicago";
 
+  systemd.tpm2.enable = false;
+
   users.users.tristan = {
     isNormalUser = true;
     extraGroups = [
