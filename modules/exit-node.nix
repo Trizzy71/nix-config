@@ -15,10 +15,8 @@
   networking.networkmanager.enable = true;
   time.timeZone = "America/Chicago";
 
-  systemd.masks = [
-    "dev-tpm0.device"
-    "dev-tpmrm0.device"
-  ];
+  systemd.tpm2.enable = false;
+  boot.initrd.systemd.tpm2.enable = false;
 
   users.users.tristan = {
     isNormalUser = true;
