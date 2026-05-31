@@ -1,19 +1,17 @@
 { pkgs, ... }:
 
-# All of my developer tools
-# Rust, Zig, LS deps
-
+# -DEV TOOLS-
 {
   home.packages = with pkgs; [
-    rustup
-    cargo-expand
+    rustup          # the rust programming language
+    cargo-expand    # a collection of rust tools
     cargo-watch
     cargo-edit
     cargo-outdated
     cargo-audit
-    zig
+    zig   # the zig programming language
     zls
     nil
-    nixd
+    nixd  # the nix programming lanugage
   ];
 }

@@ -1,94 +1,81 @@
 { pkgs, ... }:
 
-# -UNMANAGED PACKAGES-
-# For configuration, use "programs" below for nix managed configs
-
 {
+  # -UNMANAGED PACKAGES-
+  # use "programs" below for nix-managed configs
   home.packages = with pkgs; [
-    nano
-    wget
-    lf
-    fzf
-    btop
-    tldr
-    fastfetch
+    nano                    # text editor
+    wget                    # file downloads
+    lf                      # tui file manager
+    fzf                     # fuzzy finding
+    btop                    # tui resource monitor
+    tldr                    # simplified man pages
+    fastfetch               # fast system information
   ];
 
   # -SESSION VARIABLES-
-  # Environment variables are set every time you open a shell
-  # Growth: you can add `LANG = "en_US.UTF-8";`
-
+  # env variables set at shell start
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "nvim";      # default text editor (sub for nano if need)
+    LANG = "en_US.UTF-8"; # language settings (optional)
   };
 
   # -ZSH-
-  # This is the shell, I enabled syntax highlighting here to make things more readable
-  # I also added some shell aliases to make it easier to write common commands
-
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
+    autosuggestion.enable = true;         # suggest commands while typing
+    syntaxHighlighting.enable = true;     # syntax highlighting
     shellAliases = {
-      vim = "nvim";
-      ".." = "cd ..";
-      ff = "fastfetch";
-      hms = "home-manager switch --flake ~/.config/nix-config#tristan@macbook";
+      vim = "nvim";                       # vim to nvim
+      ".." = "cd ..";                     # parent directory
+      ff = "fastfetch";                   # sys info
+      hms = "home-manager switch --flake ~/.config/nix-config#tristan@macbook"; # home manager switch
     };
   };
 
-  # -STARSHIP-
-  # shell prompt, shows git status
-
+  # -STARSHIP PROMPT-
   programs.starship = {
     enable = true;
     settings = {
       git_branch = {
-        symbol = " ";
-        disabled = false;
+        symbol = " ";       # space between the branch name and prompt
+        disabled = false;   # enable git branch display
       };
     };
   };
 
-  # -KITTY-
-  # terminal emulator, I have some configuration applied to make it more enjoyable
-
+  # -KITTY TERMINAL-
   programs.kitty = {
     enable = true;
-    themeFile = "Dracula";
+    themeFile = "Dracula";  # theme for terminal
     settings = {
-      dynamic_background_opacity = true;
-      background_opacity = "0.9";
-      background_blur = 5;
-      font_size = 14;
-      font_family = "JetBrainsMono Nerd Font";
-      cursor_blink_interval = "0.5";
-      cursor_shape = "beam";
-      scrollback_lines = 10000;
-      enable_audio_bell = false;
-      enabled_layouts = "tall,stack";
-      tab_bar_style = "powerline";
+      dynamic_background_opacity = true;        # opacity settings enable
+      background_opacity = "0.9";               # background opacity
+      background_blur = 5;                      # background blur
+      font_size = 14;                           # font size
+      font_family = "JetBrainsMono Nerd Font";  # font family
+      cursor_blink_interval = "0.5";            # cursor blink
+      cursor_shape = "beam";                    # cursor shape
+      scrollback_lines = 10000;                 # scrollback buffer
+      enable_audio_bell = false;                # disable audio
+      enabled_layouts = "tall,stack";           # layout configs
+      tab_bar_style = "powerline";              # style for tabs bar
     };
   };
 
-  # -BAT-
-  # bat is like `cat` but with syntax highlighting and line numbers.
-
+  # -BAT CONFIGURATION-
   programs.bat = {
     enable = true;
     config = {
-      theme = "TwoDark";
-      italic-text = "always";
-      pager = "less -FR";
+      theme = "TwoDark";        # theme
+      italic-text = "always";   # always use italic text
+      pager = "less -FR";       # paging command
     };
   };
 
-  #  -LF-  #
-  # settings.hidden = true just lets the `lf` command see hidden files and directories
-
+  #  -LF FILE BROWSER-
   programs.lf = {
     enable = true;
-    settings.hidden = true;
+    settings.hidden = true;     # show hidden
   };
 }
