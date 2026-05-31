@@ -61,7 +61,7 @@
   #   extraGroups = [
   #     "wheel"
   #     "networkmanager"
-    ]; # Enable ‘sudo’ for the user.
+  # ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     packages = with pkgs; [
       tree
