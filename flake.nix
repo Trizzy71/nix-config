@@ -49,9 +49,9 @@
       nixosConfigurations."frank-test" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/frank-test/configuration.nix # MUST be changed to the work-test/configuration.nix
-          ./hosts/frank-test/hardware-configuration.nix # this links to the default path for hardware-configuration.nix
-          ./modules/tailscale-system.nix
+          ./hosts/frank-test/configuration.nix
+          ./hosts/frank-test/hardware-configuration.nix
+          ./modules/exit-node.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
