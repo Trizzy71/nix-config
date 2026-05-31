@@ -62,11 +62,11 @@
   #     "wheel"
   #     "networkmanager"
   # ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      tree
-    ];
-  };
+  shell = pkgs.zsh;
+  packages = with pkgs; [
+    tree
+  ];
+  # };
 
   #### Programs ####
   # programs.firefox.enable = true;
@@ -85,6 +85,6 @@
   # nix.settings.experimental-features = [
   #   "nix-command"
   #   "flakes"
-  ];
+  # ];
 
 }
