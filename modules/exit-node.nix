@@ -15,8 +15,10 @@
   networking.networkmanager.enable = true;
   time.timeZone = "America/Chicago";
 
-  systemd.devices."dev-tpm0".enable = false;
-  systemd.devices."dev-tpmrm0".enable = false;
+  boot.blacklistedKernelModules = [
+    "tpm_tis"
+    "tpm_crb"
+  ];
 
   users.users.tristan = {
     isNormalUser = true;
