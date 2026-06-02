@@ -45,7 +45,7 @@
         ];
       };
 
-      # work-test - NixOS
+      # frank-test - NixOS
       nixosConfigurations."frank-test" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -57,6 +57,22 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.tristan = import ./hosts/frank-test/home.nix;
+          }
+        ];
+      };
+
+      # sdi-test - NixOS
+      nixosConfigurations."2-test" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/2-test/configuration.nix
+          ./hosts/2-test/hardware-configuration.nix
+          ./modules/exit-node.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.tristan = import ./hosts/2-test/home.nix;
           }
         ];
       };
