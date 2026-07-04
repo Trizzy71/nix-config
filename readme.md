@@ -6,7 +6,7 @@ My specific goals are:
 - [x] Version Controlled
 - [ ] Modular
 - [ ] Secrets usage
-- [ ] Tailscale demo for Al
+- [x] Tailscale demo for Al
 
 ## Summary
 This repo contains the following components:
