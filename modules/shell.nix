@@ -32,6 +32,7 @@
       ".." = "cd .."; # parent directory
       ff = "fastfetch"; # sys info
       hms = "home-manager switch --flake ~/.config/nix-config#macbook"; # home manager switch
+      ll = "ls -a"; # stands for long list, lists hidden files as well
     };
   };
 
