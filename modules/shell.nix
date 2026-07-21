@@ -4,6 +4,7 @@
   # -UNMANAGED PACKAGES-
   # use "programs" below for nix-managed configs
   home.packages = with pkgs; [
+    asciiquarium
     nano # text editor
     wget # file downloads
     lf # tui file manager
