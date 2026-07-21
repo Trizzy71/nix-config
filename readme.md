@@ -1,7 +1,8 @@
 # Guide - Modules/Flake
 
 ## Overview
-This repo, `nix-config` is dedicated to my learning of modularization and version control
+This repo, `nix-config` is dedicated to my learning of modularization and version control.
+
 My specific goals are:
 - [x] Version Controlled
 - [ ] Modular
@@ -10,7 +11,7 @@ My specific goals are:
 
 ## Summary
 This repo contains the following components:
-- Configuration files for different machine (`macbook`, `arch`, `dell`).
+- Configuration files for different machine (`macbook`, `arch`, `dell`, `exit-node`).
 - NixOS system configs and modules
 - home-manager configurations
 
@@ -24,4 +25,4 @@ You can always reach for google but the most-used commands are here:
   - `nixos-rebuild switch --flake ~/nix-config#dell --impure`
   - The `switch` can be swapped for `boot` if there are huge changes
   - `--impure` allows the build to include files not inside `nix-config`, this is required because flake.nix pulls the `hardware-configuration.nix` file on the dell from the dell itself at `/etc/nixos/hardware-configuration.nix`
-    - This is required because hardware-configuration is generated locally on the machine when you install NixOS. We don't want it version controlled.
+    - This is required because hardware-configuration is generated locally on the machine when you install NixOS.
