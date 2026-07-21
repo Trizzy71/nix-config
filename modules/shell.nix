@@ -31,7 +31,7 @@
       vim = "nvim"; # vim to nvim
       ".." = "cd .."; # parent directory
       ff = "fastfetch"; # sys info
-      hms = "home-manager switch --flake ~/.config/nix-config#tristan@macbook"; # home manager switch
+      hms = "home-manager switch --flake ~/.config/nix-config#macbook"; # home manager switch
     };
   };
 

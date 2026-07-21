@@ -19,5 +19,13 @@
     nerd-fonts.jetbrains-mono
   ];
 
+  programs.zsh.initExtra = ''
+    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
+    if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+      . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+    fi
+  '';
+
   programs.home-manager.enable = true;
 }
