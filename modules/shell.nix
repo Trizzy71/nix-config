@@ -40,9 +40,22 @@
   programs.starship = {
     enable = true;
     settings = {
+      format = "$directory$git_branch$character";
+      directory = {
+        style = "bold blue";
+        repo_root_style = "bold magenta";
+        repo_root_format = "[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style) ";
+        truncation_length = 100;
+        truncate_to_repo = false;
+      };
       git_branch = {
-        symbol = " "; # space between the branch name and prompt
-        disabled = false; # enable git branch display
+        symbol = "";
+        format = "[$symbol$branch]($style) ";
+        style = "bold green";
+      };
+      character = {
+        success_symbol = "[>](bold green)";
+        error_symbol = "[>](bold red)";
       };
     };
   };
