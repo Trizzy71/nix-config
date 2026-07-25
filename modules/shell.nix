@@ -13,7 +13,7 @@
     tldr # simplified man pages
     fastfetch # fast system information
     nmap
-    claude-code
+    # claude-code this will come soon
   ];
 
   # -SESSION VARIABLES-
