@@ -10,6 +10,7 @@
       tokyonight-nvim
       lualine-nvim
       telescope-nvim
+      telescope-fzf-native-nvim
       gitsigns-nvim
     ];
 
