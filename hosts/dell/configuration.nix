@@ -9,19 +9,14 @@
   imports = [
     # Import hardware-configuration.nix
     # This is defined in flake.nix right now
+    # Shared NixOS baseline (boot loader, networkmanager, timezone, user,
+    # zsh, stateVersion) comes from modules/base-system.nix; tailscale +
+    # ssh come from modules/exit-node.nix. Both are wired in flake.nix.
   ];
 
-  # Systemd + EFI boot #
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  networking.hostName = "dell"; # Define your hostname.
 
-  networking.hostName = "nixos-test"; # Define your hostname.
-
-  #### Networking (nmcli | nmtui) ####
-  networking.networkmanager.enable = true;
   # boot.kernel.sysctl."net.core.rmem_max" = 2500000; # this is for higher ts throughput
-
-  time.timeZone = "America/Chicago";
 
   #### Internationalisation ####
   # i18n.defaultLocale = "en_US.UTF-8";
@@ -56,22 +51,8 @@
   #### Touchpad support (enabled default in most desktopManager) ####
   # services.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.tristan = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      tree
-    ];
-  };
-
   #### Programs ####
   programs.firefox.enable = true;
-  programs.zsh.enable = true;
 
   #### System Profile Packages ####
   environment.systemPackages = with pkgs; [
@@ -79,12 +60,4 @@
     # wget     # DONT TOUCH
     alacritty
   ];
-
-  #### System state and Experimental features ####
-  system.stateVersion = "25.11";
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
 }

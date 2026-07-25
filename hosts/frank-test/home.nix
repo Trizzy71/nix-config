@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
-# Dell linux machine config
+# frank-test linux machine config
 
 {
   imports = [

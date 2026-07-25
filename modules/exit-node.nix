@@ -1,7 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 
 # -EXIT NODE-
-# shared config for all exit nodes
+# Additional config for hosts acting as tailscale exit nodes with remote
+# SSH management. Import alongside modules/base-system.nix, not instead
+# of it.
 
 {
   imports = [
@@ -9,37 +11,8 @@
     ./tailscale-system.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.networkmanager.enable = true;
-  time.timeZone = "America/Chicago";
-
+  # Works around long boot hangs from systemd probing a TPM that isn't
+  # present (seen on test VMs with no TPM device).
   systemd.tpm2.enable = false;
   boot.initrd.systemd.tpm2.enable = false;
-
-  users.users.tristan = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      tree
-    ];
-  };
-
-  programs.zsh.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    nano
-    wget
-  ];
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  system.stateVersion = "25.11";
 }

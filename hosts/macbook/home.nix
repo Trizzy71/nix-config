@@ -19,7 +19,7 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
     if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then

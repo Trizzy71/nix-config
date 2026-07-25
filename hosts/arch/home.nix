@@ -8,7 +8,6 @@
     ../../modules/git.nix
     ../../modules/dev-tools.nix
     ../../modules/neovim.nix
-#    ../../modules/wofi.nix
   ];
 
   home.username      = "trizzy";

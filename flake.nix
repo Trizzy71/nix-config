@@ -35,7 +35,8 @@
         modules = [
           ./hosts/dell/configuration.nix
           /etc/nixos/hardware-configuration.nix # this links to the default path for hardware-configuration.nix
-          ./modules/tailscale-system.nix
+          ./modules/base-system.nix
+          ./modules/exit-node.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -51,6 +52,7 @@
         modules = [
           ./hosts/frank-test/configuration.nix
           ./hosts/frank-test/hardware-configuration.nix
+          ./modules/base-system.nix
           ./modules/exit-node.nix
           home-manager.nixosModules.home-manager
           {
@@ -67,6 +69,7 @@
         modules = [
           ./hosts/2-test/configuration.nix
           ./hosts/2-test/hardware-configuration.nix
+          ./modules/base-system.nix
           ./modules/exit-node.nix
           home-manager.nixosModules.home-manager
           {
