@@ -13,6 +13,7 @@
     tldr # simplified man pages
     fastfetch # fast system information
     nmap
+    claude-code
   ];
 
   # -SESSION VARIABLES-
@@ -43,7 +44,7 @@
       format = "$directory$git_branch$character";
       directory = {
         style = "bold blue";
-        repo_root_style = "bold magenta";
+        repo_root_style = "bold purple";
         repo_root_format = "[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style) ";
         truncation_length = 100;
         truncate_to_repo = false;
