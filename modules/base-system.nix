@@ -1,28 +1,11 @@
 { pkgs, ... }:
 
-# -BASE SYSTEM-
-# Shared baseline for every NixOS host: boot loader, networking, user
-# account, and system-level settings that apply regardless of a host's
-# role (exit node, gaming rig, etc). Import this on every NixOS host.
-
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
   time.timeZone = "America/Chicago";
-
-  users.users.tristan = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      tree
-    ];
-  };
 
   programs.zsh.enable = true;
 
@@ -31,9 +14,18 @@
     wget
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
   system.stateVersion = "25.11";
 }
