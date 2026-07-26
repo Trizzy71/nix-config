@@ -34,8 +34,9 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/dell/configuration.nix
-          /etc/nixos/hardware-configuration.nix # this links to the default path for hardware-configuration.nix
+          /etc/nixos/hardware-configuration.nix
           ./modules/base-system.nix
+          ./modules/user-tristan.nix
           ./modules/exit-node.nix
           home-manager.nixosModules.home-manager
           {
@@ -53,6 +54,7 @@
           ./hosts/frank-test/configuration.nix
           ./hosts/frank-test/hardware-configuration.nix
           ./modules/base-system.nix
+          ./modules/user-tristan.nix
           ./modules/exit-node.nix
           home-manager.nixosModules.home-manager
           {
@@ -70,12 +72,53 @@
           ./hosts/2-test/configuration.nix
           ./hosts/2-test/hardware-configuration.nix
           ./modules/base-system.nix
+          ./modules/user-tristan.nix
           ./modules/exit-node.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.tristan = import ./hosts/2-test/home.nix;
+          }
+        ];
+      };
+
+      # tristan — gaming desktop (NVIDIA 4070 Ti S)
+      nixosConfigurations."tristan" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/tristan/configuration.nix
+          ./hosts/tristan/hardware-configuration.nix
+          ./modules/base-system.nix
+          ./modules/user-tristan.nix
+          ./modules/desktop-plasma.nix
+          ./modules/gpu-nvidia.nix
+          ./modules/gaming.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.tristan = import ./hosts/tristan/home.nix;
+          }
+        ];
+      };
+
+      # taryn — gaming desktop (AMD RX 480)
+      nixosConfigurations."taryn" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/taryn/configuration.nix
+          ./hosts/taryn/hardware-configuration.nix
+          ./modules/base-system.nix
+          ./modules/user-taryn.nix
+          ./modules/desktop-plasma.nix
+          ./modules/gpu-amd.nix
+          ./modules/gaming.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.taryn = import ./hosts/taryn/home.nix;
           }
         ];
       };
