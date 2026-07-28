@@ -13,6 +13,7 @@
     tldr # simplified man pages
     fastfetch # fast system information
     nmap
+    helix # trying out another modal editor other than nvim
     # claude-code this will come soon
   ];
 
