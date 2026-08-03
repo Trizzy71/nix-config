@@ -12,6 +12,13 @@
   # package so the pairing and file-transfer ports get opened for us.
   programs.kdeconnect.enable = true;
 
+  # krfb is a VNC server. Without this it is only reachable on localhost, so
+  # the whole point of it — helping on the other desktop — would not work.
+  # It listens only while a sharing session is actively running, and gates
+  # connections behind its own password/confirmation settings.
+  # 5900 is the VNC default; confirm against krfb's settings after install.
+  networking.firewall.allowedTCPPorts = [ 5900 ];
+
   environment.systemPackages =
     with pkgs;
     [
@@ -25,9 +32,22 @@
       krita # digital painting
       digikam # photo management
       haruna # KDE's mpv-based video player
+      subtitlecomposer # subtitle editing/syncing, pairs with kdenlive
+      kid3 # audio tagger, tidies the Elisa library
+      krename # batch rename from EXIF/ID3, pairs with digikam
+
+      # -DEV-
+      # These live here rather than in modules/dev-tools.nix on purpose: that
+      # module is home-manager level and is imported by macbook (darwin) and
+      # arch too, and heaptrack is Linux-only.
+      gdb # debugger — step through a program, inspect state
+      heaptrack # heap profiler; self-contained, unlike the valgrind frontends
+      okteta # hex editor
     ]
     ++ (with pkgs.kdePackages; [
       kdenlive # video editor
+      glaxnimate # vector animation, integrates with kdenlive
+      kwave # audio editor
 
       # -UTILITIES- (Fedora KDE's default set)
       kcalc # calculator
@@ -38,6 +58,13 @@
       kcolorchooser # colour picker
       partitionmanager # disk partitioning
       kompare # visual diff
+      yakuake # drop-down terminal on F12
+      isoimagewriter # write an ISO to USB — used to build the installer stick
+      ksystemlog # GUI journal reader, for when a rebuild breaks the desktop
+
+      # -REMOTE DESKTOP-
+      krfb # share this screen (VNC) — see the firewall port above
+      krdc # connect to another machine (VNC/RDP); needs no open port
 
       # -GAMES-
       kpat # solitaire
