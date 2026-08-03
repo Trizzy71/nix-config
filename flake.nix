@@ -18,7 +18,13 @@
 
       # Mac — standalone home-manager
       homeConfigurations."macbook" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+        # Not legacyPackages: that instance has the default config, so
+        # allowUnfree is false and unfree packages (claude-code) fail to
+        # evaluate. The NixOS hosts get allowUnfree from base-system.nix.
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          config.allowUnfree = true;
+        };
         modules = [
           ./hosts/macbook/home.nix
         ];
@@ -26,7 +32,10 @@
 
       # Arch — standalone home-manager on Linux
       homeConfigurations."arch" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
         modules = [
           ./hosts/arch/home.nix
         ];

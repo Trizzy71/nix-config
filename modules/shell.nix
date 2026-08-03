@@ -13,7 +13,7 @@
     fastfetch # fast system information
     nmap
     helix # trying out another modal editor other than nvim
-    # claude-code this will come soon
+    claude-code # unfree; see allowUnfree in base-system.nix and flake.nix
   ];
 
   # -SESSION VARIABLES-

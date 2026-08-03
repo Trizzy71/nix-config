@@ -14,6 +14,9 @@
     pciutils
     usbutils
     mpv
+    # The session is Wayland-only; wl-copy/wl-paste is what neovim and native
+    # Wayland apps actually use. xclip stays for XWayland clients.
+    wl-clipboard
     xclip
   ];
 }
