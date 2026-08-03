@@ -11,18 +11,66 @@ My specific goals are:
 
 ## Summary
 This repo contains the following components:
-- Configuration files for different machine (`macbook`, `arch`, `dell`, `exit-node`).
 - NixOS system configs and modules
 - home-manager configurations
 
-## Reference
-You can always reach for google but the most-used commands are here:
-    - Rebuild: `home-manager switch --flake ~/path/to/nix-config#____` # The blank will be for `arch , dell , macbook , work-test`
-    - Testing packages: `nix run nixpkgs#package-name
+### Hosts
 
-## NixOS specific:
-- Rebuild command:
-  - `nixos-rebuild switch --flake ~/nix-config#dell --impure`
-  - The `switch` can be swapped for `boot` if there are huge changes
-  - `--impure` allows the build to include files not inside `nix-config`, this is required because flake.nix pulls the `hardware-configuration.nix` file on the dell from the dell itself at `/etc/nixos/hardware-configuration.nix`
-    - This is required because hardware-configuration is generated locally on the machine when you install NixOS.
+| Host | Kind | Notes |
+|---|---|---|
+| `tristan` | NixOS | Gaming/workstation desktop, NVIDIA 4070 Ti Super, KDE Plasma 6 |
+| `taryn` | NixOS | Gaming desktop, AMD RX 480, KDE Plasma 6 |
+| `dell` | NixOS | Tailscale exit node, qtile. Needs `--impure` (see below) |
+| `frank-test` | NixOS | Exit-node test box |
+| `2-test` | NixOS | Exit-node test box |
+| `macbook` | standalone home-manager | aarch64-darwin |
+| `arch` | standalone home-manager | x86_64-linux |
+
+## Channel policy
+Both inputs are pinned to the **26.05 release branch**, not `nixos-unstable`:
+
+- `nixpkgs` → `nixos-26.05`
+- `home-manager` → `release-26.05`
+
+home-manager's module options are only guaranteed to match nixpkgs within a
+release, so the two are versioned together on purpose. `nix flake update` pulls
+backported fixes rather than six months of churn. Commit `flake.lock` after
+every update.
+
+`system.stateVersion` records the release a host was *first installed* with and
+must never be bumped. It lives in each `hosts/*/configuration.nix`, not in the
+shared `modules/base-system.nix`.
+
+## Reference
+- Testing a package without installing: `nix run nixpkgs#package-name`
+- Every host defines a rebuild alias in its `home.nix`:
+  - NixOS hosts: `nrs`
+  - standalone home-manager hosts: `hms`
+
+## Rebuild commands
+NixOS hosts (home-manager runs as a NixOS module, so the whole system rebuilds
+as one unit — `home-manager switch` does not apply):
+
+```
+sudo nixos-rebuild switch --flake ~/.config/nix-config#tristan
+```
+
+- `switch` can be swapped for `boot` if there are huge changes.
+- `dell` additionally needs `--impure`, because `flake.nix` pulls its
+  `hardware-configuration.nix` from `/etc/nixos/hardware-configuration.nix` on
+  the machine itself rather than from this repo. As a side effect, `dell` is the
+  one host that cannot be evaluated from anywhere else.
+
+Standalone home-manager hosts (`macbook`, `arch`):
+
+```
+home-manager switch --flake ~/.config/nix-config#macbook
+```
+
+## Installing a new host
+1. Boot the matching release installer ISO, partition and mount.
+2. `nixos-generate-config --root /mnt --no-filesystems --show-hardware-config`
+   → paste into `hosts/<host>/hardware-configuration.nix`.
+3. `blkid` → fill in any placeholder UUIDs (e.g. `/mnt/games` on `tristan`).
+4. `nixos-install --flake /mnt/etc/nixos/nix-config#<host>`.
+5. Reboot and change the password with `passwd`.

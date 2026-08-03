@@ -1,6 +1,15 @@
 { lib, modulesPath, ... }:
 
-# Placeholder — replace with output of `nixos-generate-config` on the actual machine.
+# ############################################################################
+# PLACEHOLDER — THIS WILL EVALUATE AND BUILD BUT WILL NOT BOOT.
+#
+# The UUIDs below are fake. Before installing, replace this whole file with:
+#   nixos-generate-config --root /mnt --no-filesystems --show-hardware-config
+# and then re-add the fileSystems entries for / and /boot from `blkid`.
+#
+# The generated file also brings hardware.cpu.*.updateMicrocode and the real
+# boot.initrd.availableKernelModules, neither of which is here.
+# ############################################################################
 
 {
   imports = [
