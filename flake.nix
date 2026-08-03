@@ -2,9 +2,12 @@
   description = "Trizzy's nix config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Pinned to the release branch, not unstable: fewer moving parts, security
+    # fixes only. home-manager is pinned to the matching release — its module
+    # options are only guaranteed to agree with nixpkgs within a release.
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -91,6 +94,7 @@
           ./hosts/tristan/hardware-configuration.nix
           ./modules/base-system.nix
           ./modules/user-tristan.nix
+          ./modules/ssh-system.nix
           ./modules/desktop-plasma.nix
           ./modules/gpu-nvidia.nix
           ./modules/gaming.nix
@@ -98,6 +102,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            # Rename pre-existing dotfiles instead of aborting the activation.
+            home-manager.backupFileExtension = "hm-bak";
             home-manager.users.tristan = import ./hosts/tristan/home.nix;
           }
         ];
@@ -118,6 +124,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "hm-bak";
             home-manager.users.taryn = import ./hosts/taryn/home.nix;
           }
         ];

@@ -3,10 +3,9 @@
 {
   # -UNMANAGED PACKAGES-
   # use "programs" below for nix-managed configs
+  # nano and wget come from the system profile (modules/base-system.nix).
   home.packages = with pkgs; [
     asciiquarium
-    nano # text editor
-    wget # file downloads
     lf # tui file manager
     fzf # fuzzy finding
     btop # tui resource monitor
@@ -29,11 +28,12 @@
     enable = true;
     autosuggestion.enable = true; # suggest commands while typing
     syntaxHighlighting.enable = true; # syntax highlighting
+    # The rebuild alias is host-specific and lives in hosts/*/home.nix — this
+    # module is imported by every host, so it cannot name one of them.
     shellAliases = {
       vim = "nvim"; # vim to nvim
       ".." = "cd .."; # parent directory
       ff = "fastfetch"; # sys info
-      hms = "home-manager switch --flake ~/.config/nix-config#macbook"; # home manager switch
       ll = "ls -a"; # stands for long list, lists hidden files as well
     };
   };

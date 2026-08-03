@@ -16,6 +16,9 @@
 
   networking.hostName = "dell"; # Define your hostname.
 
+  # Release this host was first installed with. Never bump.
+  system.stateVersion = "25.11";
+
   # boot.kernel.sysctl."net.core.rmem_max" = 2500000; # this is for higher ts throughput
 
   #### Internationalisation ####

@@ -81,7 +81,8 @@
   # ];
 
   #### System state and Experimental features ####
-  # system.stateVersion = "25.11";
+  # Release this host was first installed with. Never bump.
+  system.stateVersion = "25.11";
   # nix.settings.experimental-features = [
   #   "nix-command"
   #   "flakes"

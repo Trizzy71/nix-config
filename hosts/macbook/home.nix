@@ -17,7 +17,13 @@
 
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    # No system profile on a standalone home-manager host; the NixOS hosts get
+    # these from modules/base-system.nix.
+    nano
+    wget
   ];
+
+  programs.zsh.shellAliases.hms = "home-manager switch --flake ~/.config/nix-config#macbook";
 
   programs.zsh.initContent = ''
     eval "$(/opt/homebrew/bin/brew shellenv zsh)"
