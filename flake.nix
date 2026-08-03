@@ -96,6 +96,8 @@
           ./modules/user-tristan.nix
           ./modules/ssh-system.nix
           ./modules/desktop-plasma.nix
+          ./modules/desktop-suite.nix
+          ./modules/flatpak.nix
           ./modules/gpu-nvidia.nix
           ./modules/gaming.nix
           home-manager.nixosModules.home-manager
@@ -118,6 +120,8 @@
           ./modules/base-system.nix
           ./modules/user-taryn.nix
           ./modules/desktop-plasma.nix
+          ./modules/desktop-suite.nix
+          ./modules/flatpak.nix
           ./modules/gpu-amd.nix
           ./modules/gaming.nix
           home-manager.nixosModules.home-manager
