@@ -19,7 +19,28 @@
   services.fstrim.enable = true;
   zramSwap.enable = true;
 
+  # Overflow *below* zram, which sits at priority 5. An unset priority gets a
+  # negative value from the kernel, so zram absorbs pressure first and this is
+  # pure OOM insurance for a heavy rebuild with a game still running.
+  #
+  # Deliberately not hibernate-capable: that would need swap >= RAM plus a
+  # resume_offset computed from `filefrag -v /swapfile` after the file exists,
+  # and hibernate on the NVIDIA proprietary driver is unreliable. Note there is
+  # no boot.resumeDevice anywhere in this config, by design.
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16 * 1024; # MiB
+    }
+  ];
+
   programs.zsh.enable = true;
+
+  # On a normal distro a downloaded binary just runs. On NixOS there is no
+  # /lib64/ld-linux-x86-64.so.2, so it fails with a misleading "no such file or
+  # directory". This affects language servers pulled by VS Code/Zed extensions
+  # and prebuilt CLI tools. The default library set covers the common cases.
+  programs.nix-ld.enable = true;
 
   environment.systemPackages = with pkgs; [
     nano
