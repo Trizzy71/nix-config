@@ -14,7 +14,7 @@
   # Steam library on separate SSD — replace UUID after running `blkid` on the machine
   fileSystems."/mnt/3tb-data" = {
     device = "/dev/disk/by-uuid/1cfe5523-fbf3-42fd-bd90-9bb756e8565b";
-    fsType = "ext4";
+    fsType = "xfs";
     options = [
       "defaults"
       "nofail"
