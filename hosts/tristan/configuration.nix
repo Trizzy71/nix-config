@@ -12,8 +12,8 @@
   users.users.tristan.initialPassword = "y";
 
   # Steam library on separate SSD — replace UUID after running `blkid` on the machine
-  fileSystems."/mnt/games" = {
-    device = "/dev/disk/by-uuid/PLACEHOLDER-UUID";
+  fileSystems."/mnt/3tb-data" = {
+    device = "/dev/disk/by-uuid/1cfe5523-fbf3-42fd-bd90-9bb756e8565b";
     fsType = "ext4";
     options = [
       "defaults"
@@ -23,6 +23,6 @@
 
   # A freshly formatted ext4 mount is root-owned; Steam needs to write to it.
   systemd.tmpfiles.rules = [
-    "d /mnt/games 0755 tristan users -"
+    "d /mnt/3tb-data 0755 tristan users -"
   ];
 }
