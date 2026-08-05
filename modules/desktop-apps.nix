@@ -8,6 +8,5 @@
     vesktop
     obsidian
     zed-editor
-    spotify
   ];
 }
