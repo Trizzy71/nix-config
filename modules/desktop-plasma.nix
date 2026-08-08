@@ -16,13 +16,10 @@
     wireplumber.enable = true;
   };
 
-  # PipeWire only gets the rtkit package when this is on, and plasma6 does not
-  # set it. Without it PipeWire runs without realtime scheduling — audio
-  # crackle under game load.
+  # pipewire needs this so that there isn't audio crackle under load
   security.rtkit.enable = true;
 
-  # Run Electron apps (VS Code, Obsidian, Zed, vesktop) as native Wayland
-  # clients instead of XWayland: correct scaling and sharper text.
+  # run electron apps native on wayland instead of xwayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   hardware.bluetooth = {

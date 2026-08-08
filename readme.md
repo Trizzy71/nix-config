@@ -5,9 +5,8 @@ This repo, `nix-config` is dedicated to my learning of modularization and versio
 
 My specific goals are:
 - [x] Version Controlled
-- [ ] Modular
+- [x] Modular
 - [ ] Secrets usage
-- [x] Tailscale demo for Al
 
 ## Summary
 This repo contains the following components:
@@ -24,9 +23,11 @@ This repo contains the following components:
 | `frank-test` | NixOS | Exit-node test box |
 | `2-test` | NixOS | Exit-node test box |
 | `macbook` | standalone home-manager | aarch64-darwin |
-| `arch` | standalone home-manager | x86_64-linux |
+| `arch` | deprecated | x86_64-linux |
 
 ## Channel policy
+This section was written for me by claude-code for quick reference in the future.
+
 Both inputs are pinned to the **26.05 release branch**, not `nixos-unstable`:
 
 - `nixpkgs` → `nixos-26.05`
@@ -41,28 +42,16 @@ every update.
 must never be bumped. It lives in each `hosts/*/configuration.nix`, not in the
 shared `modules/base-system.nix`.
 
-## Desktop hosts (`tristan`, `taryn`)
+## Workstation hosts - Modern stack (`tristan`, `taryn`)
 Both get `desktop-plasma.nix` (Plasma 6, SDDM, PipeWire, Bluetooth, printing),
 `desktop-suite.nix` (the app suite) and `flatpak.nix`.
 
-`services.desktopManager.plasma6.enable` already provides Dolphin, Konsole,
-Kate, **Okular** (PDF), Gwenview, Ark, Spectacle, Discover, Elisa, KInfoCenter,
-KWalletManager and plasma-systemmonitor — do not re-declare these in
-`desktop-suite.nix`. Notably `kcalc` is *not* among them.
-
 ### Flatpak
-Enabled on both desktop hosts as an escape hatch, with the Flathub remote
-registered by a systemd oneshot. Nix remains the primary source of software;
-Flatpak is a second, separate update path:
+Enabled on both desktop hosts as a fallback.
 
 ```
 flatpak update
 ```
-
-Flatpak apps appear in the Plasma launcher automatically — the NixOS module
-adds the exports directories to `environment.profiles`, and sets
-`fonts.fontDir.enable` so they can see host fonts.
-
 ## Reference
 - Testing a package without installing: `nix run nixpkgs#package-name`
 - Every host defines a rebuild alias in its `home.nix`:
@@ -78,6 +67,7 @@ sudo nixos-rebuild switch --flake ~/.config/nix-config#tristan
 ```
 
 - `switch` can be swapped for `boot` if there are huge changes.
+# I need to fix the following but it still applies
 - `dell` additionally needs `--impure`, because `flake.nix` pulls its
   `hardware-configuration.nix` from `/etc/nixos/hardware-configuration.nix` on
   the machine itself rather than from this repo. As a side effect, `dell` is the

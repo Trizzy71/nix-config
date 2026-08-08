@@ -3,30 +3,20 @@
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # Unbounded generations fill the ESP — with NVIDIA-sized initrds that
-  # eventually makes every rebuild fail. Cap it.
+  # Cap generations to save on storage space
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.tmp.cleanOnBoot = true;
 
   networking.networkmanager.enable = true;
   time.timeZone = "America/Chicago";
 
-  # System-wide, unlike the LANG session variable in modules/shell.nix, which
-  # never reaches the display manager or system services.
   i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "us";
 
   services.fstrim.enable = true;
   zramSwap.enable = true;
 
-  # Overflow *below* zram, which sits at priority 5. An unset priority gets a
-  # negative value from the kernel, so zram absorbs pressure first and this is
-  # pure OOM insurance for a heavy rebuild with a game still running.
-  #
-  # Deliberately not hibernate-capable: that would need swap >= RAM plus a
-  # resume_offset computed from `filefrag -v /swapfile` after the file exists,
-  # and hibernate on the NVIDIA proprietary driver is unreliable. Note there is
-  # no boot.resumeDevice anywhere in this config, by design.
+  # not hibernate-capable
   swapDevices = [
     {
       device = "/swapfile";
