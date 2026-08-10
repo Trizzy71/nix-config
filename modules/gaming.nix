@@ -22,6 +22,14 @@
   };
 
   programs.gamemode.enable = true;
+  # Restricts GameMode from touching GPU power states
+  programs.gamemode.settings = {
+    gpu = {
+      apply_gpu_optimisations = "accept-responsibility";
+      gpu_device = 0;
+      nv_powwermizer_mode = 1; # Max performance
+    };
+  };
 
   # hardware.steam-hardware.enable and the gamescope package both come from
   # programs.steam / gamescopeSession above.

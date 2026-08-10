@@ -23,5 +23,7 @@
     # Installs the suspend/resume/hibernate units that preserve video memory.
     # Without this, waking from sleep commonly lands on a black screen.
     powerManagement.enable = true;
+    # Should keep the power state locked while `ALT+TAB`
+    nvidiaPersistenced = true;
   };
 }
