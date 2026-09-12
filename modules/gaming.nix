@@ -36,5 +36,10 @@
   environment.systemPackages = with pkgs; [
     mangohud
     prismlauncher
+
+    # Power/thermal diagnostics for tracking down clock/pacing issues.
+    s-tui # live per-core frequency + temp + throttling
+    lm_sensors # temps (run `sensors-detect` once, outside Nix)
+    powertop # live C-state/power draw
   ];
 }

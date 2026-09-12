@@ -26,4 +26,9 @@
     # Should keep the power state locked while `ALT+TAB`
     nvidiaPersistenced = true;
   };
+
+  # btop's GPU panel can't find libnvidia-ml.so on NixOS (not on its library
+  # search path), so it never shows GPU stats. nvtop is packaged to resolve
+  # the driver correctly and actually shows utilization/clocks/VRAM.
+  environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
 }
