@@ -16,6 +16,11 @@
   services.fstrim.enable = true;
   zramSwap.enable = true;
 
+  # Default governor on amd-pstate/intel_pstate can sit in "powersave", which
+  # lets single-threaded loads (e.g. a game's main thread) stay pinned near
+  # idle clocks instead of boosting. "performance" removes that ambiguity.
+  powerManagement.cpuFreqGovernor = "performance";
+
   # not hibernate-capable
   swapDevices = [
     {
