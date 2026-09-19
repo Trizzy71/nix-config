@@ -36,6 +36,7 @@
   environment.systemPackages = with pkgs; [
     mangohud
     prismlauncher
+    r2modman
 
     # Power/thermal diagnostics for tracking down clock/pacing issues.
     s-tui # live per-core frequency + temp + throttling
