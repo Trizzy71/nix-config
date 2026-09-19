@@ -17,7 +17,6 @@
     mangohud
     prismlauncher
     r2modman
-
     # power/thermal diag
     s-tui # live per-core stats
     lm_sensors # temps

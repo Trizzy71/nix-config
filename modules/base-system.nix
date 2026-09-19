@@ -3,7 +3,7 @@
 {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  # Cap generations to save on storage space
+  # cap generations to save on storage space
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.tmp.cleanOnBoot = true;
 
