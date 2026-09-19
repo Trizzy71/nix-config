@@ -7,16 +7,17 @@ Welcome to my `nix-config` repo! This space is all about my journey into modular
 I'd like to keep things:
 - [x] Version Controlled
 - [x] Modular
-- [ ] Secrets usage
+- [ ] Secrets (For API keys and Tailscale access. I will probably use `sops-nix` or `agenix`)
 
 ## What's Inside
-This repo is loaded with:
+This repo contains:
 - NixOS system configs and modules
-- home-manager configurations
+- `home-manager` configurations
+- Personal notes
 
 ### Hosts Overview
 
-| Host | Kind | Notes |
+| Host | Type | Notes |
 |---|---|---|
 | `tristan` | NixOS | My gaming and work desktop, NVIDIA 4070 Ti Super, loving KDE Plasma 6 |
 | `taryn` | NixOS | Another gaming desktop, AMD RX 480, KDE Plasma 6 |
@@ -27,7 +28,7 @@ This repo is loaded with:
 | `arch` | deprecated | x86_64-linux (out with the old!) |
 
 ## Channel policy
-Quick note (thanks `claude-code`) for keeping track of the channels.
+Quick note (note by `claude-code`) for keeping track of the channels.
 
 Both inputs are pinned to the **26.05 release branch**, not `nixos-unstable`:
 
@@ -38,7 +39,58 @@ This is important because home-manager's options only sync up with `nixpkgs` wit
 
 Remember, `system.stateVersion` marks the release a host was first installed with. It should always stay consistent. This setting can be found in each `hosts/*/configuration.nix`.
 
-## Workstation hosts - Modern stack (`tristan`, `taryn`)
+.
+├── flake.lock
+├── flake.nix
+├── hosts
+│   ├── 2-test
+│   │   ├── configuration.nix
+│   │   ├── hardware-configuration.nix
+│   │   └── home.nix
+│   ├── arch
+│   │   └── home.nix
+│   ├── dell
+│   │   ├── configuration.nix
+│   │   └── home.nix
+│   ├── frank-test
+│   │   ├── configuration.nix
+│   │   ├── hardware-configuration.nix
+│   │   └── home.nix
+│   ├── macbook
+│   │   └── home.nix
+│   ├── taryn
+│   │   ├── configuration.nix
+│   │   ├── hardware-configuration.nix
+│   │   └── home.nix
+│   └── tristan
+│       ├── configuration.nix
+│       ├── hardware-configuration.nix
+│       └── home.nix
+├── modules
+│   ├── base-system.nix
+│   ├── daily-tools.nix
+│   ├── desktop-apps.nix
+│   ├── desktop-plasma.nix
+│   ├── desktop-suite.nix
+│   ├── dev-tools.nix
+│   ├── exit-node.nix
+│   ├── flatpak.nix
+│   ├── gaming.nix
+│   ├── git.nix
+│   ├── gpu-amd.nix
+│   ├── gpu-nvidia.nix
+│   ├── neovim.nix
+│   ├── shell.nix
+│   ├── ssh-system.nix
+│   ├── tailscale-system.nix
+│   ├── testing.nix
+│   ├── user-taryn.nix
+│   └── user-tristan.nix
+└── readme.md
+
+10 directories, 38 files
+
+## Workstation hosts - Desktop stack (`tristan`, `taryn`)
 Both machines are getting the full OS kit: `desktop-plasma.nix` (Plasma 6, SDDM, PipeWire, Bluetooth, printing), `desktop-suite.nix` (all the apps you need), and `flatpak.nix` (for my users who don't know Nix (all of them)).
 
 ## Reference
@@ -65,6 +117,8 @@ Standalone home-manager hosts (`macbook`, `arch`):
 home-manager switch --flake ~/.config/nix-config#macbook
 ```
 
+
+
 ## Setting Up a New Host
 1. Start by booting the installer ISO that matches the release, then partition and mount it.
 2. Run `nixos-generate-config --root /mnt --no-filesystems --show-hardware-config` -> Copy this into `hosts/<host>/hardware-configuration.nix`.
@@ -72,4 +126,4 @@ home-manager switch --flake ~/.config/nix-config#macbook
 4. Run `nixos-install --flake /mnt/etc/nixos/nix-config#<host>`.
 5. Reboot and set your password with `passwd`!
 
-Feel free to make any adjustments or let me know if you'd like any modules created or specific changes made!
+See something I should fix? Module missing? Message me on LinkedIn or open an issue, I'm always learning.
