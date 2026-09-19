@@ -24,17 +24,6 @@
         ];
       };
 
-      # Deprecated Arch - standalone home-manager on Linux
-      # homeConfigurations."arch" = home-manager.lib.homeManagerConfiguration {
-      #   pkgs = import nixpkgs {
-      #     system = "x86_64-linux";
-      #     config.allowUnfree = true;
-      #   };
-      #   modules = [
-      #     ./hosts/arch/home.nix
-      #   ];
-      # };
-
       # Dell - NixOS
       nixosConfigurations."dell" = nixpkgs.lib.nixosSystem {
         # declares target config
