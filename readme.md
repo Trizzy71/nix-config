@@ -1,5 +1,3 @@
-# Guide - Modules/Flake
-
 ## Overview
 Welcome to my `nix-config` repo! This space is all about my journey into modularization and version control, learning as I go.
 
