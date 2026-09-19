@@ -16,9 +16,6 @@
   services.fstrim.enable = true;
   zramSwap.enable = true;
 
-  # Default governor on amd-pstate/intel_pstate can sit in "powersave", which
-  # lets single-threaded loads (e.g. a game's main thread) stay pinned near
-  # idle clocks instead of boosting. "performance" removes that ambiguity.
   powerManagement.cpuFreqGovernor = "performance";
 
   # not hibernate-capable
@@ -31,10 +28,6 @@
 
   programs.zsh.enable = true;
 
-  # On a normal distro a downloaded binary just runs. On NixOS there is no
-  # /lib64/ld-linux-x86-64.so.2, so it fails with a misleading "no such file or
-  # directory". This affects language servers pulled by VS Code/Zed extensions
-  # and prebuilt CLI tools. The default library set covers the common cases.
   programs.nix-ld.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -50,18 +43,15 @@
   ];
 
   nix.gc = {
+    # garbage cleanup unreferenced paths
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
 
-  # GC removes unreferenced paths; optimise deduplicates what's left.
   nix.optimise = {
+    # deduplicate
     automatic = true;
     dates = [ "weekly" ];
   };
-
-  # system.stateVersion is deliberately NOT set here. It records the release a
-  # host was first installed with and must never be bumped, so it belongs to
-  # the host, not to this shared module. See hosts/*/configuration.nix.
 }

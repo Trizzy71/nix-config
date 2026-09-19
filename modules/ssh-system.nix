@@ -1,7 +1,7 @@
 { ... }:
 
 # -SSH-
-# config for remote management
+# config for secure shell access
 # The public key here will be imported by all exit nodes
 {
   services.openssh = {

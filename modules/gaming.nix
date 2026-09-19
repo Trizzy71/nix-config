@@ -4,35 +4,23 @@
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
-
-    # Declarative Proton-GE, so there is no mutable copy in ~/.steam to keep
-    # track of. Shows up as a normal compatibility tool in Steam.
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
-
-    # Steam calls LAN streaming "Remote Play" too — this is what lets the
-    # Steam Deck stream from this machine.
-    remotePlay.openFirewall = true;
-
-    # TCP 27040: copying game files to other machines on the LAN.
-    localNetworkGameTransfers.openFirewall = true;
-
-    # TCP/UDP 27015: hosting Source dedicated servers. Host firewall only —
-    # players outside the LAN also need a router port-forward.
+    extraCompatPackages = [ pkgs.proton-ge-bin ]; # declarative Proton-GE - no mutable copy in steam
+    remotePlay.openFirewall = true; # steam deck streaming
+    localNetworkGameTransfers.openFirewall = true; # copy game files over LAN
     dedicatedServer.openFirewall = true;
   };
 
   programs.gamemode.enable = true;
 
-  # hardware.steam-hardware.enable and the gamescope package both come from
-  # programs.steam / gamescopeSession above.
   environment.systemPackages = with pkgs; [
+    # various gaming launchers
     mangohud
     prismlauncher
     r2modman
 
-    # Power/thermal diagnostics for tracking down clock/pacing issues.
-    s-tui # live per-core frequency + temp + throttling
-    lm_sensors # temps (run `sensors-detect` once, outside Nix)
-    powertop # live C-state/power draw
+    # power/thermal diag
+    s-tui # live per-core stats
+    lm_sensors # temps
+    powertop # live c-state/power draw
   ];
 }

@@ -2,7 +2,6 @@
 
 {
   # -UNMANAGED PACKAGES-
-  # use "programs" below for nix-managed configs
   # nano and wget come from the system profile (modules/base-system.nix).
   home.packages = with pkgs; [
     asciiquarium
@@ -28,9 +27,8 @@
     enable = true;
     autosuggestion.enable = true; # suggest commands while typing
     syntaxHighlighting.enable = true; # syntax highlighting
-    # The rebuild alias is host-specific and lives in hosts/*/home.nix — this
-    # module is imported by every host, so it cannot name one of them.
     shellAliases = {
+      # aliases for *every* host
       vim = "nvim"; # vim to nvim
       ".." = "cd .."; # parent directory
       ff = "fastfetch"; # sys info
@@ -91,9 +89,9 @@
     };
   };
 
-  #  -LF FILE BROWSER-
+  # -LF FILE BROWSER-
   programs.lf = {
     enable = true;
-    settings.hidden = true; # show hidden
+    settings.hidden = true; # show hidden files
   };
 }

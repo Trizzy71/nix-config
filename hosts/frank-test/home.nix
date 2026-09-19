@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
 
-# frank-test linux machine config
-
 {
   imports = [
     ../../modules/shell.nix

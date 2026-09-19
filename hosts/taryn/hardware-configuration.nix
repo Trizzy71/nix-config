@@ -1,7 +1,6 @@
 { lib, modulesPath, ... }:
 
-# Placeholder — replace with output of `nixos-generate-config` on the actual machine.
-
+# placeholder
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")

@@ -4,31 +4,18 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    # Hardware video decode in Firefox et al.
-    extraPackages = with pkgs; [ nvidia-vaapi-driver ];
+    extraPackages = with pkgs; [ nvidia-vaapi-driver ]; # hardware video decode in firefox
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
-
-    # NVIDIA's own open *kernel modules* — not nouveau. Userspace, the Vulkan
-    # ICD and NVENC are still proprietary. Recommended by NVIDIA for Turing and
-    # newer, and performance-identical to the closed module.
-    open = true;
-
+    open = true; # nvidia open kernel - recommended for turing and newer
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    # Installs the suspend/resume/hibernate units that preserve video memory.
-    # Without this, waking from sleep commonly lands on a black screen.
-    powerManagement.enable = true;
-    # Should keep the power state locked while `ALT+TAB`
-    nvidiaPersistenced = true;
+    powerManagement.enable = true; # suspend/resume - fixes black screen waking from sleep
+    nvidiaPersistenced = true; # locks power state while `ALT+TAB`
   };
 
-  # btop's GPU panel can't find libnvidia-ml.so on NixOS (not on its library
-  # search path), so it never shows GPU stats. nvtop is packaged to resolve
-  # the driver correctly and actually shows utilization/clocks/VRAM.
-  environment.systemPackages = [ pkgs.nvtopPackages.nvidia ];
+  environment.systemPackages = [ pkgs.nvtopPackages.nvidia ]; # shows power states
 }

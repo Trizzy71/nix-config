@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
 
-# Dell linux machine config
-
 {
   imports = [
     ../../modules/shell.nix
