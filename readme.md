@@ -1,13 +1,16 @@
 ## Overview
+
 Welcome to my `nix-config` repo! This space is all about my journey into modularization and version control, learning as I go.
 
 ### Goals
+
 I'd like to keep things:
 - [x] Version Controlled
 - [x] Modular
 - [ ] Secrets (For API keys and Tailscale access. I will probably use `sops-nix` or `agenix`)
 
 ## What's Inside
+
 This repo contains:
 - NixOS system configs and modules
 - `home-manager` configurations
@@ -75,13 +78,15 @@ nix-config
 └── reference.md # quick commands and notes
 ```
 ## Why did I build it this way?
+
 I chose to use flakes and home-manager. Flakes provide a single foundation for each of my hosts and the flake.lock that pins my versions of nixpkgs and home-manager which helps manage all of my machines from a single repo. Home-manager as a NixOS module means that a single `nixos-rebuild switch` on my hosts applies to the system AND the user config in one go. Flaptak being included alongside nix gives you a way to install packages which follow their own update cycle and are not tied to this config. For the Mac specifically, I could have chose to use `nix-darwin` which has much better integration with MacOS allowing you to controll MacOS settings and homebrew casks declaratively. I chose not to do this, it is my only Apple machine. I control all shell and tui packages through nix and all of my GUI apps from .dmg and the app store.
 
 ## Setting Up a New Host
+
 1. Start by booting the installer ISO that matches the release, then partition and mount it.
 2. Run `nixos-generate-config --root /mnt --no-filesystems --show-hardware-config` -> Copy this into `hosts/<host>/hardware-configuration.nix`.
 3. Use `blkid` to fill in any placeholder UUIDs (ex. `/mnt/games` (an alternate partition for game storage) on `tristan`)
 4. Run `nixos-install --flake /mnt/etc/nixos/nix-config#<host>`.
 5. Reboot and set your password with `passwd`!
 
-See something I should fix? Module missing? Message me on LinkedIn or open an issue, I'm always learning.
+## See something I should fix? Module missing? Message me on LinkedIn or open an issue, I'm always learning.
