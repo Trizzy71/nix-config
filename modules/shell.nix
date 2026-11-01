@@ -11,7 +11,6 @@
     tldr # simplified man pages
     fastfetch # fast system information
     nmap
-    helix
     eza # ls replacement
     tmux
     zellij
@@ -65,15 +64,13 @@
   # -KITTY TERMINAL-
   programs.kitty = {
     enable = true;
-    # no themeFile, colors come from light/dark files below
+    # kitten themes writes to themes.conf, not managed by nix
     extraConfig = ''
+      include themes.conf
       include light-theme.auto.conf
       include dark-theme.auto.conf
     '';
     settings = {
-      dynamic_background_opacity = true; # opacity settings enable
-      background_opacity = "0.9";
-      background_blur = 5;
       font_size = 14;
       font_family = "JetBrainsMono Nerd Font"; # font family
       cursor_blink_interval = "0.5"; # cursor blink
@@ -89,74 +86,31 @@
     };
   };
 
-  # -KITTY COLORS-
-  # Breeze (light) and Breeze Dark palettes. kitty loads whichever file matches
-  # the system color scheme.
-  xdg.configFile."kitty/light-theme.auto.conf".text = ''
-    background #eff0f1
-    foreground #232627
-    cursor #232627
-    cursor_text_color #eff0f1
-    selection_background #3daee9
-    selection_foreground #fcfcfc
-    active_tab_background #eff0f1
-    active_tab_foreground #232627
-    inactive_tab_background #d6d8da
-    inactive_tab_foreground #4d4d4d
-    tab_bar_background #d6d8da
-    color0 #232627
-    color1 #ed1515
-    color2 #11d116
-    color3 #f67400
-    color4 #1d99f3
-    color5 #9b59b6
-    color6 #1abc9c
-    color7 #bdc3c7
-    color8 #7f8c8d
-    color9 #c0392b
-    color10 #1cdc9a
-    color11 #fdbc4b
-    color12 #3daee9
-    color13 #8e44ad
-    color14 #16a085
-    color15 #fcfcfc
+  # -HELIX CONFIGURATION-
+  # named ANSI colors, palette comes from kitty
+  xdg.configFile."helix/themes/kitty-ansi.toml".text = ''
+    "comment" = { fg = "gray", modifiers = ["italic"] }
+    "keyword" = "magenta"
+    "string" = "green"
+    "function" = "blue"
+    "type" = "yellow"
+    "constant" = "cyan"
+    "constant.numeric" = "cyan"
+    "variable.builtin" = "red"
+    "operator" = "cyan"
+    "ui.selection" = { bg = "blue" }
   '';
 
-  xdg.configFile."kitty/dark-theme.auto.conf".text = ''
-    background #232627
-    foreground #fcfcfc
-    cursor #fcfcfc
-    cursor_text_color #232627
-    selection_background #3daee9
-    selection_foreground #fcfcfc
-    active_tab_background #31363b
-    active_tab_foreground #fcfcfc
-    inactive_tab_background #1b1e20
-    inactive_tab_foreground #a1a9b1
-    tab_bar_background #1b1e20
-    color0 #232627
-    color1 #ed1515
-    color2 #11d116
-    color3 #f67400
-    color4 #1d99f3
-    color5 #9b59b6
-    color6 #1abc9c
-    color7 #fcfcfc
-    color8 #7f8c8d
-    color9 #c0392b
-    color10 #1cdc9a
-    color11 #fdbc4b
-    color12 #3daee9
-    color13 #8e44ad
-    color14 #16a085
-    color15 #ffffff
-  '';
+  programs.helix = {
+    enable = true;
+    settings.theme = "kitty-ansi";
+  };
 
   # -BAT CONFIGURATION-
   programs.bat = {
     enable = true;
     config = {
-      theme = "TwoDark"; # theme
+      theme = "ansi"; # follows terminal palette
       italic-text = "always"; # always use italic text
       pager = "less -FR"; # paging command
     };
