@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     # -RUST-
     rustup # manages rust toolchains - gives you cargo, rustc, clippy, rustfmt
-    rust-analyzer # lsp for rust - needed for the editor to be useful
+    # rust-analyzer # lsp for rust - needed for the editor to be useful
     cargo-watch # rebuilds and reruns on file changes
     cargo-edit # cargo add/rm/upgrade from the command line
     cargo-expand # shows the code after macro expansion
