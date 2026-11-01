@@ -8,6 +8,7 @@
     ../../modules/shell.nix
     ../../modules/git.nix
     ../../modules/dev-tools.nix
+    ../../modules/repo-symlinks.nix
   ];
 
   home.username = "tristan";
@@ -22,7 +23,7 @@
     wget
   ];
 
-  programs.zsh.shellAliases.hms = "home-manager switch --flake ~/.config/nix-config#macbook";
+  programs.zsh.shellAliases.hms = "home-manager switch --flake ~/.config/nix-config#macbook -b hm-bak"; # -b: move colliding files aside instead of aborting
 
   programs.zsh.initContent = ''
     eval "$(/opt/homebrew/bin/brew shellenv zsh)"

@@ -9,6 +9,7 @@
     ../../modules/daily-tools.nix
     ../../modules/communication.nix
     ../../modules/ai.nix
+    ../../modules/repo-symlinks.nix
   ];
 
   home.username = "tristan";

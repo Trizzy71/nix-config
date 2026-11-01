@@ -8,6 +8,7 @@
     ../../modules/desktop-apps.nix
     ../../modules/daily-tools.nix
     ../../modules/communication.nix
+    ../../modules/repo-symlinks.nix
   ];
 
   home.username = "taryn";

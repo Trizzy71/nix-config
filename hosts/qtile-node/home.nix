@@ -4,6 +4,7 @@
   imports = [
     ../../modules/shell.nix
     ../../modules/git.nix
+    ../../modules/repo-symlinks.nix
   ];
 
   home.username = "tristan";

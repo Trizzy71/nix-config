@@ -38,6 +38,7 @@
           {
             home-manager.useGlobalPkgs = true; # use the same packages as system
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "hm-bak"; # rename existing dotfiles instead of aborting
             home-manager.users.tristan = import ./hosts/qtile-node/home.nix; # configure hm to use `tristan` user
           }
         ];
