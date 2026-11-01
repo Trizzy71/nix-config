@@ -53,7 +53,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    claude-code # unfree; see allowUnfree in base-system.nix and flake.nix
     whisper-cpp
     ollama-cuda
     pipewire

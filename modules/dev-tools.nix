@@ -4,6 +4,8 @@
 # learning rust and go
 {
   home.packages = with pkgs; [
+    # -AI-
+    claude-code # unfree; allowUnfree in base-system.nix and flake.nix
     # -RUST-
     rustup # manages rust toolchains - gives you cargo, rustc, clippy, rustfmt
     # rust-analyzer # lsp for rust - needed for the editor to be useful
