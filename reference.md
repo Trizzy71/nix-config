@@ -13,9 +13,6 @@ sudo nixos-rebuild switch --flake ~/.config/nix-config#tristan
 
 - `switch` can be swapped for `boot` if there are huge changes.
 
-### Important note for `dell`
-This host was designed before I figured out how to manage hardware-configuration.nix. It needs `--impure`, as its `flake.nix` pulls its `hardware-configuration.nix` from `/etc/nixos/hardware-configuration.nix` directly on the machine. Unfortunately, this means `dell` can’t be evaluated from anywhere else.
-
 Standalone home-manager hosts (`macbook`, `arch`):
 
 ```

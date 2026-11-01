@@ -2,6 +2,11 @@
 # -GIT-
 # both the  program and it's configuration
 {
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
+
   programs.git = {
     enable = true;
     settings = {

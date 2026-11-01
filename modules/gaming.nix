@@ -22,4 +22,24 @@
     lm_sensors # temps
     powertop # live c-state/power draw
   ];
+
+  systemd.services.flatpak-sober = {
+    description = "Install the Sober flatpak";
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "network-online.target" ];
+    after = [
+      "network-online.target"
+      "flatpak-flathub-remote.service"
+    ];
+    path = [ pkgs.flatpak ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      Restart = "on-failure";
+      RestartSec = 10;
+    };
+    script = ''
+      flatpak install --noninteractive --or-update flathub org.vinegarhq.Sober
+    '';
+  };
 }

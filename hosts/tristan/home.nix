@@ -3,11 +3,12 @@
 {
   imports = [
     ../../modules/shell.nix
-    ../../modules/neovim.nix
     ../../modules/git.nix
     ../../modules/dev-tools.nix
     ../../modules/desktop-apps.nix
     ../../modules/daily-tools.nix
+    ../../modules/communication.nix
+    ../../modules/ai.nix
   ];
 
   home.username = "tristan";

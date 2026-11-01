@@ -1,11 +1,9 @@
 { pkgs, ... }:
 
 {
-  programs.vscode.enable = true;
   programs.firefox.enable = true;
 
   home.packages = with pkgs; [
-    vesktop
     obsidian
     zed-editor
     spotify

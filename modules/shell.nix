@@ -11,14 +11,16 @@
     tldr # simplified man pages
     fastfetch # fast system information
     nmap
-    helix # trying out another modal editor other than nvim
-    claude-code # unfree; see allowUnfree in base-system.nix and flake.nix
+    helix
+    eza # ls replacement
+    tmux
+    zellij
   ];
 
   # -SESSION VARIABLES-
   # env variables set at shell start
   home.sessionVariables = {
-    EDITOR = "nvim"; # default text editor (sub for nano if need)
+    EDITOR = "hx"; # default text editor (sub for nano if need)
     LANG = "en_US.UTF-8"; # language settings (optional)
   };
 
@@ -29,10 +31,10 @@
     syntaxHighlighting.enable = true; # syntax highlighting
     shellAliases = {
       # aliases for *every* host
-      vim = "nvim"; # vim to nvim
+      vim = "hx"; # vim to hx
       ".." = "cd .."; # parent directory
       ff = "fastfetch"; # sys info
-      ll = "ls -a"; # stands for long list, lists hidden files as well
+      ll = "eza -la --git"; # stands for long list, lists hidden files as well
     };
   };
 
@@ -94,4 +96,7 @@
     enable = true;
     settings.hidden = true; # show hidden files
   };
+
+  # -ZOXIDE-
+  programs.zoxide.enable = true; # jump to frecent dirs with z
 }

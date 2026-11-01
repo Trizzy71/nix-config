@@ -8,4 +8,6 @@
       vulkan-loader
     ];
   };
+
+  environment.systemPackages = [ pkgs.nvtopPackages.amd ]; # shows power states
 }

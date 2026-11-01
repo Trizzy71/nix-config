@@ -7,6 +7,9 @@
   system.stateVersion = "26.05";
 
   users.users.tristan.initialPassword = "y"; # im so bad
+  users.users.tristan.extraGroups = [ "ydotool" ];
+
+  programs.ydotool.enable = true;
 
   # steam library on separate SSD
   fileSystems."/mnt/3tb-data" = {
