@@ -9,7 +9,6 @@
     ../../modules/daily-tools.nix
     ../../modules/communication.nix
     ../../modules/ai.nix
-    ../../modules/repo-symlinks.nix
   ];
 
   home.username = "tristan";
@@ -18,7 +17,7 @@
 
   # home-manager runs as a NixOS module here, so `home-manager switch` does not
   # apply — the whole system rebuilds as one unit.
-  programs.zsh.shellAliases.nrs = "sudo nixos-rebuild switch --flake ~/.config/nix-config#tristan";
+  programs.zsh.shellAliases.nrs = "sudo nixos-rebuild switch --flake ~/repos/nix-config#tristan";
 
   programs.home-manager.enable = true;
 }

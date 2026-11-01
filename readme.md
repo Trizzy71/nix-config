@@ -51,7 +51,7 @@ nix-config
 │   ├── communication.nix                  # discord, telegram, signal, localsend
 │   ├── daily-tools.nix                    # useful terminal utilities
 │   ├── desktop-apps.nix                   # personal apps specific to me, not included in desktop-suite
-│   ├── desktop-plasma.nix                 # ssh - public key
+│   ├── desktop-plasma.nix                 # plasma, pipewire, bluetooth, fonts
 │   ├── desktop-suite.nix                  # desktop applications, libreoffice, utilities
 │   ├── dev-tools.nix                      # rust/go packages
 │   ├── exit-node.nix                      # ssh and tailscale
@@ -66,6 +66,8 @@ nix-config
 │   ├── user-taryn.nix                     # user account
 │   └── user-tristan.nix                   # user account
 ├── readme.md                                # you are here
+├── readme-cli.md                            # cheat-sheet for CLI tools in modules/shell.nix
+├── readme-dev.md                            # cheat-sheet for dev tooling in modules/dev-tools.nix
 └── reference.md                             # quick commands and notes
 ```
 ## Why did I build it this way?
@@ -75,9 +77,11 @@ I chose to use flakes and home-manager. Flakes provide a single foundation for e
 ## Setting Up a New Host
 
 1. Start by booting the installer ISO that matches the release, then partition and mount it.
-2. Run `nixos-generate-config --root /mnt --no-filesystems --show-hardware-config` -> Copy this into `hosts/<host>/hardware-configuration.nix`.
-3. Use `blkid` to fill in any placeholder UUIDs (ex. `/mnt/games` (an alternate partition for game storage) on `tristan`)
-4. Run `nixos-install --flake /mnt/etc/nixos/nix-config#<host>`.
-5. Reboot and set your password with `passwd`!
+2. Clone the repo straight to where it'll live permanently — since `/mnt` becomes `/` after reboot, cloning to `/mnt/home/<user>/repos/nix-config` lands it at `~/repos/nix-config` with no extra move later: `mkdir -p /mnt/home/<user>/repos && git clone <repo-url> /mnt/home/<user>/repos/nix-config`.
+3. Run `nixos-generate-config --root /mnt --no-filesystems --show-hardware-config > /mnt/home/<user>/repos/nix-config/hosts/<host>/hardware-configuration.nix`.
+4. Use `blkid` to fill in any placeholder UUIDs (ex. `/mnt/games` (an alternate partition for game storage) on `tristan`)
+5. Run `nixos-install --root /mnt --flake /mnt/home/<user>/repos/nix-config#<host>`.
+6. Reboot and set your password with `passwd`!
+7. The repo was cloned as root during install, so fix ownership before it bites you later: `sudo chown -R <user>:users ~/repos/nix-config`.
 
 ## See something I should fix? Module missing? Message me on LinkedIn or open an issue, I'm always learning.

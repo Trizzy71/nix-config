@@ -4,33 +4,30 @@
   - NixOS hosts: `nrs` (`nixos-rebuild switch ...`)
   - standalone home-manager hosts: `hms` (`home-manager switch ...`)
 
-## Where this flake actually lives
-The repo's real home is `~/repos/nix-config`. `~/.config/nix-config` — the path baked into every `nrs`/`hms` alias and the commands below — is a symlink to it, managed declaratively by `modules/repo-symlinks.nix` (imported on every host). You don't manage that symlink by hand; home-manager activation creates/repairs it on every switch.
-
 ## Rebuild commands
 NixOS host:
 
 ```
-sudo nixos-rebuild switch --flake ~/.config/nix-config#tristan
+sudo nixos-rebuild switch --flake ~/repos/nix-config#tristan
 ```
 
 - `switch` can be swapped for `boot` if there are huge changes.
 
-Standalone home-manager hosts (`macbook`, `arch`):
+Standalone home-manager host (`macbook`):
 
 ```
-home-manager switch --flake ~/.config/nix-config#macbook
+home-manager switch --flake ~/repos/nix-config#macbook
 ```
 
 ## Setting up a new machine
-`~/.config/nix-config` doesn't exist yet on a fresh machine, so the very first rebuild has to point at the real path directly:
+Just clone it to where it lives and switch, no extra steps:
 
 ```
 git clone <repo-url> ~/repos/nix-config
 sudo nixos-rebuild switch --flake ~/repos/nix-config#<host>   # or: home-manager switch --flake ~/repos/nix-config#macbook
 ```
 
-After that first switch, home-manager activation creates the `~/.config/nix-config` symlink, and `nrs`/`hms` work unchanged from then on.
+For a brand new install from scratch (partitioning, hardware-configuration.nix, etc.), see "Setting Up a New Host" in `readme.md`.
 
 ## Channel policy
 Quick note (note by `claude-code`) for keeping track of the channels.
