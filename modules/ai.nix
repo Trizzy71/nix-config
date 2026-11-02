@@ -29,7 +29,8 @@ let
   voiceTypeDo = pkgs.writeShellScriptBin "voice-type-do" ''
     set -euo pipefail
     export YDOTOOL_SOCKET=/run/ydotoold/socket
-    exec sg ydotool -c "${pkgs.ydotool}/bin/ydotool type -- \"\$1\"" /bin/sh "$@"
+    export YDOTOOL_TEXT="$1"
+    exec sg ydotool -c '${pkgs.ydotool}/bin/ydotool type -- "$YDOTOOL_TEXT"'
   '';
 
   voiceType = pkgs.writeShellScriptBin "voice-type" ''
