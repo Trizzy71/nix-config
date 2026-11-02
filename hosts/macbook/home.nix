@@ -8,6 +8,7 @@
     ../../modules/shell.nix
     ../../modules/git.nix
     ../../modules/dev-tools.nix
+    ../../modules/languages.nix
   ];
 
   home.username = "tristan";
