@@ -26,7 +26,10 @@
     statix # linter - catches common nix antipatterns
     deadnix # finds unused bindings/imports in nix files
 
-    # -ALL-
-    just # one command runner instead of remembering per-language incantations
+    # -PYTHON-
+    python3
+    uv # fast all-in-one package/venv manager - replaces pip, virtualenv, poetry
+    ruff # fast rust-based linter + formatter - replaces flake8, black, isort
+    pyright # lsp - type checking and autocomplete
   ];
 }
