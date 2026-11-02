@@ -43,7 +43,8 @@ let
       text=$(${pkgs.whisper-cpp}/bin/whisper-cli -m ${whisperModel} -f "$wavfile" -nt --no-prints)
       rm -f "$wavfile"
 
-      ${pkgs.ydotool}/bin/ydotool type -- "$text"
+      export YDOTOOL_SOCKET=/run/ydotoold/socket
+      sg ydotool '${pkgs.ydotool}/bin/ydotool type -- '"'"'$text'"'"
     else
       ${pkgs.libnotify}/bin/notify-send "voice-type" "recording..."
       ${pkgs.pipewire}/bin/pw-record --rate 16000 --channels 1 "$wavfile" &
