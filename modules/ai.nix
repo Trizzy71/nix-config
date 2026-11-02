@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 let
+  whisper-cpp-cuda = pkgs.whisper-cpp.override { cudaSupport = true; };
+
   whisperModel = pkgs.fetchurl {
     url = "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin";
     hash = "sha256-oDd5yG3zMjB19eeWyyzlAp8A7Ihp7uP9+4l6/jbG0AI=";
@@ -20,7 +22,7 @@ let
     wait "$rec_pid" 2>/dev/null || true
 
     echo "transcribing..."
-    text=$(${pkgs.whisper-cpp}/bin/whisper-cli -m ${whisperModel} -f "$tmpfile" -nt --no-prints)
+    text=$(${whisper-cpp-cuda}/bin/whisper-cli -m ${whisperModel} -f "$tmpfile" -nt --no-prints)
 
     echo "$text"
     exec ${pkgs.claude-code}/bin/claude "$text"
@@ -47,7 +49,7 @@ let
       rm -f "$pidfile"
 
       ${pkgs.libnotify}/bin/notify-send "voice-type" "transcribing..."
-      text=$(${pkgs.whisper-cpp}/bin/whisper-cli -m ${whisperModel} -f "$wavfile" -nt --no-prints)
+      text=$(${whisper-cpp-cuda}/bin/whisper-cli -m ${whisperModel} -f "$wavfile" -nt --no-prints)
       rm -f "$wavfile"
 
       ${voiceTypeDo}/bin/voice-type-do "$text"
@@ -60,7 +62,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    whisper-cpp
+    whisper-cpp-cuda
     ollama-cuda
     pipewire
     libnotify
