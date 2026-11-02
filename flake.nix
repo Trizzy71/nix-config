@@ -24,6 +24,7 @@
         ];
       };
 
+      # qtile-exit-node
       nixosConfigurations."qtile-node" = nixpkgs.lib.nixosSystem {
         # declares target config
         system = "x86_64-linux"; # architecture

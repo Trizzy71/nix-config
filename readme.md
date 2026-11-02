@@ -53,13 +53,14 @@ nix-config
 │   ├── desktop-apps.nix                   # personal apps specific to me, not included in desktop-suite
 │   ├── desktop-plasma.nix                 # plasma, pipewire, bluetooth, fonts
 │   ├── desktop-suite.nix                  # desktop applications, libreoffice, utilities
-│   ├── dev-tools.nix                      # rust/go packages
+│   ├── dev-tools.nix                      # cross-language tooling - claude-code, just, direnv
 │   ├── exit-node.nix                      # ssh and tailscale
 │   ├── flatpak.nix                        # enables flatpaks if you are too lazy to edit config files
 │   ├── gaming.nix                         # launchers, power/thermal diag, gamemode/gamescope
 │   ├── git.nix                            # my username/email, basic settings
 │   ├── gpu-amd.nix                        # amd settings, vulkan
 │   ├── gpu-nvidia.nix                     # nvidia settings, open kernel, power management
+│   ├── languages.nix                      # rust/go/nix/python toolchains - compiler, lsp, linter, formatter
 │   ├── shell.nix                          # kitty, aliases, config, more tools
 │   ├── ssh-system.nix                     # ssh - public key
 │   ├── tailscale-system.nix               # tailscale
@@ -67,7 +68,7 @@ nix-config
 │   └── user-tristan.nix                   # user account
 ├── readme.md                                # you are here
 ├── readme-cli.md                            # cheat-sheet for CLI tools in modules/shell.nix
-├── readme-dev.md                            # cheat-sheet for dev tooling in modules/dev-tools.nix
+├── readme-dev.md                            # cheat-sheet for languages.nix + dev-tools.nix
 └── reference.md                             # quick commands and notes
 ```
 ## Why did I build it this way?
