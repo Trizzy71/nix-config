@@ -26,6 +26,12 @@ let
     exec ${pkgs.claude-code}/bin/claude "$text"
   '';
 
+  voiceTypeDo = pkgs.writeShellScriptBin "voice-type-do" ''
+    set -euo pipefail
+    export YDOTOOL_SOCKET=/run/ydotoold/socket
+    exec sg ydotool -c "${pkgs.ydotool}/bin/ydotool type -- \"\$1\"" /bin/sh "$@"
+  '';
+
   voiceType = pkgs.writeShellScriptBin "voice-type" ''
     set -euo pipefail
 
@@ -43,8 +49,7 @@ let
       text=$(${pkgs.whisper-cpp}/bin/whisper-cli -m ${whisperModel} -f "$wavfile" -nt --no-prints)
       rm -f "$wavfile"
 
-      export YDOTOOL_SOCKET=/run/ydotoold/socket
-      sg ydotool '${pkgs.ydotool}/bin/ydotool type -- '"'"'$text'"'"
+      ${voiceTypeDo}/bin/voice-type-do "$text"
     else
       ${pkgs.libnotify}/bin/notify-send "voice-type" "recording..."
       ${pkgs.pipewire}/bin/pw-record --rate 16000 --channels 1 "$wavfile" &
@@ -60,6 +65,7 @@ in
     libnotify
     claudeVoice
     voiceType
+    voiceTypeDo
   ];
 
   systemd.user.services.ollama = {
