@@ -88,18 +88,18 @@
 
   # -HELIX CONFIGURATION-
   # named ANSI colors, palette comes from kitty
-  xdg.configFile."helix/themes/kitty-ansi.toml".text = ''
-    "comment" = { fg = "gray", modifiers = ["italic"] }
-    "keyword" = "magenta"
-    "string" = "green"
-    "function" = "blue"
-    "type" = "yellow"
-    "constant" = "cyan"
-    "constant.numeric" = "cyan"
-    "variable.builtin" = "red"
-    "operator" = "cyan"
-    "ui.selection" = { bg = "blue" }
-  '';
+   xdg.configFile."helix/themes/kitty-ansi.toml".text = ''
+     "comment" = { fg = "gray", modifiers = ["italic"] }
+     "keyword" = "magenta"
+     "string" = "green"
+     "function" = "blue"
+     "type" = "yellow"
+     "constant" = "cyan"
+     "constant.numeric" = "cyan"
+     "variable.builtin" = "red"
+     "operator" = "cyan"
+     "ui.selection" = { bg = "blue" }
+   '';
 
   programs.helix = {
     enable = true;
