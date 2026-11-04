@@ -31,5 +31,8 @@
     uv # fast all-in-one package/venv manager - replaces pip, virtualenv, poetry
     ruff # fast rust-based linter + formatter - replaces flake8, black, isort
     pyright # lsp - type checking and autocomplete
+
+    # -C-
+    gcc
   ];
 }
