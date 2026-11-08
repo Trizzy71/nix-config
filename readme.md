@@ -56,7 +56,7 @@ nix-config
 │   ├── dev-tools.nix                      # cross-language tooling - claude-code, just, direnv
 │   ├── exit-node.nix                      # ssh and tailscale
 │   ├── flatpak.nix                        # enables flatpaks if you are too lazy to edit config files
-│   ├── gaming.nix                         # launchers, power/thermal diag, gamemode/gamescope
+│   ├── gaming.nix                         # launchers, instawow, power/thermal diag, gamemode/gamescope
 │   ├── git.nix                            # my username/email, basic settings
 │   ├── gpu-amd.nix                        # amd settings, vulkan
 │   ├── gpu-nvidia.nix                     # nvidia settings, open kernel, power management
