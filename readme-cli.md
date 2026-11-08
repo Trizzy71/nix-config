@@ -45,3 +45,28 @@ Cheat sheet for everything in `modules/shell.nix` - what each thing is and the c
 
 - `claude-code` - `claude` in a project directory.
 - `asciiquarium` - for fun. `asciiquarium`, `Ctrl+c` to stop watching fish swim across the terminal.
+
+### Proxmox
+```sh
+pct list                      # all LXCs: ID, status, name
+pct status <ID>               # running / stopped
+pct enter <ID>                # shell inside the LXC
+pct exec <ID> -- docker ps    # run one command without entering
+pct config <ID>               # check features (nesting/keyctl), mounts, net
+pct start <ID> / pct stop <ID> / pct reboot <ID>
+```
+
+### Docker (LXC)
+```sh
+docker ps                          # running containers + ports
+docker ps -a                       # include stopped/crashed ones
+docker logs -f --tail 100 <name>   # follow a container's logs
+docker stats                       # live CPU/RAM per container
+docker inspect <name>              # full config (mounts, networks, env)
+docker restart <name>
+docker compose ps                  # (in the compose project folder)
+docker compose logs -f             # logs for the whole stack
+docker compose pull && docker compose up -d   # update a stack
+docker system df                   # what's using disk (images, volumes)
+docker volume ls                   # list volumes
+```
