@@ -18,7 +18,7 @@ desktop-suite.nix    # desktop applications, libreoffice, utilities
 dev-tools.nix        # rust/go packages
 exit-node.nix        # ssh and tailscale
 flatpak.nix          # enables flatpaks
-gaming.nix           # launchers, power/thermal diag
+gaming.nix           # launchers, instawow, power/thermal diag
 git.nix              # my username/email, basic settings
 gpu-amd.nix          # amd settings, vulkan
 gpu-nvidia.nix       # nvidia settings, open kernel, power management

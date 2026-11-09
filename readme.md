@@ -56,7 +56,7 @@ nix-config
 │   ├── dev-tools.nix                      # cross-language tooling - claude-code, just, direnv
 │   ├── exit-node.nix                      # ssh and tailscale
 │   ├── flatpak.nix                        # enables flatpaks if you are too lazy to edit config files
-│   ├── gaming.nix                         # launchers, power/thermal diag, gamemode/gamescope
+│   ├── gaming.nix                         # launchers, instawow, power/thermal diag, gamemode/gamescope
 │   ├── git.nix                            # my username/email, basic settings
 │   ├── gpu-amd.nix                        # amd settings, vulkan
 │   ├── gpu-nvidia.nix                     # nvidia settings, open kernel, power management
@@ -69,7 +69,8 @@ nix-config
 ├── readme.md                                # you are here
 ├── readme-cli.md                            # cheat-sheet for CLI tools in modules/shell.nix
 ├── readme-dev.md                            # cheat-sheet for languages.nix + dev-tools.nix
-└── reference.md                             # quick commands and notes
+├── reference.md                             # quick commands and notes
+└── wow-readme.md                            # wow: forever addons - instawow overlay, why it exists, how to bump
 ```
 ## Why did I build it this way?
 
