@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 let
   whisper-cpp-cuda = pkgs.whisper-cpp.override { cudaSupport = true; };
@@ -25,7 +25,7 @@ let
     text=$(${whisper-cpp-cuda}/bin/whisper-cli -m ${whisperModel} -f "$tmpfile" -nt --no-prints)
 
     echo "$text"
-    exec ${pkgs.claude-code}/bin/claude "$text"
+    exec ${pkgs-unstable.claude-code}/bin/claude "$text"
   '';
 
   voiceTypeDo = pkgs.writeShellScriptBin "voice-type-do" ''

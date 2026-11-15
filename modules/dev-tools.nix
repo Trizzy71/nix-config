@@ -1,11 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 # -DEV TOOLS-
 # cross-language tooling; per-language toolchains live in languages.nix
 {
   home.packages = with pkgs; [
-    claude-code # unfree; allowUnfree in base-system.nix and flake.nix
     just # command runner
+  ] ++ [
+    pkgs-unstable.claude-code # unfree; allowUnfree in base-system.nix and flake.nix. pulled from unstable so it updates faster than nixos-26.05
   ];
 
   # -DIRENV-

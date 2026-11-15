@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05"; # pull packages from stable branch `nixos-26.05`
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # for packages that need to move faster than stable, e.g. claude-code
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05"; # version matches 26.05
       inputs.nixpkgs.follows = "nixpkgs"; # use same packages as system to save storage and prevents version conflicts
@@ -10,7 +11,10 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
+    { nixpkgs, nixpkgs-unstable, home-manager, ... }:
+    let
+      unstablePkgsFor = system: import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
+    in
     {
 
       # Mac - home-manager
@@ -18,6 +22,9 @@
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
+        };
+        extraSpecialArgs = {
+          pkgs-unstable = unstablePkgsFor "aarch64-darwin";
         };
         modules = [
           ./hosts/macbook/home.nix
@@ -66,6 +73,9 @@
             home-manager.useGlobalPkgs = true; # use the same packages as system
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "hm-bak"; # rename existing dotfiles instead of aborting
+            home-manager.extraSpecialArgs = {
+              pkgs-unstable = unstablePkgsFor "x86_64-linux";
+            };
             home-manager.users.tristan = import ./hosts/tristan/home.nix; # configure to use `tristan` user
           }
         ];
@@ -89,6 +99,9 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "hm-bak";
+            home-manager.extraSpecialArgs = {
+              pkgs-unstable = unstablePkgsFor "x86_64-linux";
+            };
             home-manager.users.taryn = import ./hosts/taryn/home.nix;
           }
         ];
