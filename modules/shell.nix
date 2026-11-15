@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  # -PATH-
+  home.sessionPath = [ "$HOME/.local/bin"];
+
   # -UNMANAGED PACKAGES-
   # nano and wget come from the system profile (modules/base-system.nix).
   home.packages = with pkgs; [
