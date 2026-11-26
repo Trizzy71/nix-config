@@ -11,7 +11,7 @@
     };
   };
 
-  # the machines this repo builds - each host's configuration.nix lists everything on it
+  # each configuration.nix lists everything on it
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
     {

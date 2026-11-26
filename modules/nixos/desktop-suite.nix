@@ -19,7 +19,7 @@
     with pkgs;
     [
       # -OFFICE-
-      libreoffice-qt6-still # stable release line
+      libreoffice-qt6-fresh # still line goes EOL and gets flagged insecure
 
       # -CREATIVE- KDE defaults
       krita # digital painting

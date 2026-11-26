@@ -3,8 +3,8 @@ Here is the structure and a coule rules. Check here before blink file reads. Thi
 flake.nix            # inputs + one line per host, nothing else
 hosts/<host>/configuration.nix  # everything on a NixOS machine - module imports, hostname, host-only bits
 hosts/<host>/home.nix           # which modules/home files the user gets
-hosts/jensen         # nvidia desktop (tristan's)
-hosts/lisa           # amd desktop (taryn's), kept minimal - no dev toolchains, no git.nix
+hosts/jensen         # nvidia desktop
+hosts/lisa           # amd desktop kept minimal - no dev toolchains, no git.nix
 hosts/qtile-node     # exit node, generic - hardware-generic.nix finds disks by label, no generated hardware file
 hosts/macbook/home.nix # standalone home-manager. would like to modify with nix-darwin as well as nix-homebrew to declaratively manage all packages on machine
 
