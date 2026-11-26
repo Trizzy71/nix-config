@@ -11,7 +11,6 @@
 #   - environment.profiles += the exports dirs, so their .desktop entries
 #     show up in the Plasma launcher
 #   - polkit, dbus, systemd units and tmpfiles
-# It asserts xdg.portal.enable, which plasma6 turns on.
 {
   services.flatpak.enable = true;
 
