@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     # -CROSS-LANGUAGE-
     just # command runner
+    nodejs # node + npm
 
     # -RUST-
     rustup # manages rust toolchains - gives you cargo, rustc, clippy, rustfmt

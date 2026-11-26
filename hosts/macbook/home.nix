@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 # Macbook
-# standalone home-manager - shell/cli/dev tools from nix, gui apps from .dmg and the app store
+# standalone home-manager - shell/cli/dev tools from nix, gui apps listed in ./Brewfile (casks) plus the app store
 
 {
   imports = [

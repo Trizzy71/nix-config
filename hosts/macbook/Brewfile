@@ -1,0 +1,19 @@
+# gui apps on the mac - what i want installed, nothing more
+# install: brew bundle --file ~/repos/nix-config/hosts/macbook/Brewfile
+# what's not listed: brew bundle cleanup --file ~/repos/nix-config/hosts/macbook/Brewfile  (add --force to remove it)
+# cli tools live in nix, not here
+
+cask "balenaetcher"
+cask "bambu-studio"
+cask "bitwarden"
+cask "discord"
+cask "firefox"
+cask "iina"
+cask "obsidian"
+cask "spotify"
+cask "tailscale-app"
+cask "wifiman"
+cask "zed"
+
+# app store - no cask, install by hand
+# Garageband, iMovie, Speedtest, Steam Link, uBlock Origin Lite

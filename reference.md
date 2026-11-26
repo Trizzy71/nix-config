@@ -20,6 +20,13 @@ Standalone home-manager host (`macbook`):
 home-manager switch --flake ~/repos/nix-config#macbook
 ```
 
+Mac apps live in `hosts/macbook/Brewfile`:
+
+```
+brew bundle --file ~/repos/nix-config/hosts/macbook/Brewfile           # install what's listed
+brew bundle cleanup --file ~/repos/nix-config/hosts/macbook/Brewfile   # show what's installed but not listed (--force removes it)
+```
+
 ## Setting up a new machine
 Just clone it to where it lives and switch, no extra steps:
 

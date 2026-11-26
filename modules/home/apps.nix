@@ -10,6 +10,7 @@
     zed-editor
     spotify
     mpv # media player
+    bitwarden-desktop # password manager
 
     # the session is wayland-only - wl-clipboard is what helix and native apps use, xclip is for xwayland
     wl-clipboard

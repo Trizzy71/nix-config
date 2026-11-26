@@ -7,7 +7,11 @@ Cheat sheet for everything in `modules/home/shell-env.nix` - what each thing is 
 - `eza` - better `ls`. `ll` is aliased to `eza -la --git` for a long listing with git status, `eza --tree` for a tree view.
 - `zoxide` - learns directories I visit. After `cd`-ing into a place a few times, `z partial-name` jumps straight there from anywhere. `zi` does the same but with an fzf picker if I can't remember the exact name.
 - `lf` - terminal file manager. Launch with `lf`, move with arrows or `hjkl`, `d`/`y`/`p` cut/copy/paste, `q` to quit. Hidden files are shown by default (set in the config).
-- `fzf` - fuzzy finder. Not wired into shell keybinds, so I use it directly: pipe a list into it (`history | fzf`) or wrap another command (`vim $(fzf)`, `cd $(find . -type d | fzf)`).
+- `fzf` - fuzzy finder. Wired into zsh: `Ctrl+r` searches history, `Ctrl+t` picks a file, `Alt+c` cd's into a folder. Also works piped: `vim $(fzf)`.
+
+### History
+
+- zsh keeps 50k lines, shared across terminals, no duplicates. Start a command with a space to keep it out of history.
 
 ### Editors
 
@@ -27,6 +31,8 @@ Cheat sheet for everything in `modules/home/shell-env.nix` - what each thing is 
 ### Network
 
 - `nmap` - `nmap -sn 192.168.1.0/24` for a quick scan of what's on the LAN, `nmap localhost` to check open ports on this machine.
+- `mtr host` - live traceroute, shows where along the path packets get lost or slow.
+- `dig example.com` - DNS lookup, `dig +short example.com` for just the answer.
 
 ### Files / text
 
@@ -36,6 +42,13 @@ Cheat sheet for everything in `modules/home/shell-env.nix` - what each thing is 
 - `jq` - json. `jq . file.json` pretty-prints, `curl -s <url> | jq '.key'` pulls out one field.
 - `ncdu` - `ncdu` in a folder to see what's eating space, arrows to dig in. `duf` for a quick view of mounted drives.
 - `rsync` - `rsync -avh src/ dest/` to copy or sync. A trailing slash on `src` copies its contents, not the folder.
+- `dust` - `dust` in a folder shows sizes as a tree, quicker than `ncdu` for a one-off look.
+- `tree` - `tree -L 2` lists folders two levels deep.
+- `sd` - sed, simpler: `sd 'old' 'new' file`, no escaping slashes.
+- `procs` - readable `ps`. `procs name` filters.
+- `tokei` - lines of code per language in the current folder.
+- `hyperfine` - `hyperfine 'cmd one' 'cmd two'` benchmarks and compares commands.
+- `watch` - `watch -n 2 duf` reruns a command every 2 seconds.
 - `unzip` / `7z` - `unzip file.zip`, `7z x file.7z`.
 
 ### Terminal (kitty)

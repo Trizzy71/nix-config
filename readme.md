@@ -67,7 +67,7 @@ nix-config
 │   │   └── user-tristan.nix             # user account + ssh key
 │   └── home                             # per-user - imported by a host's home.nix, also works on the mac
 │       ├── ai.nix                       # claude-code from unstable
-│       ├── apps.nix                     # gui apps - firefox, obsidian, zed, spotify, discord, signal, telegram, mpv, clipboard
+│       ├── apps.nix                     # gui apps - firefox, obsidian, zed, spotify, discord, signal, telegram, mpv, bitwarden, clipboard
 │       ├── dev.nix                      # rust/go/nix/python toolchains, just, direnv
 │       ├── git.nix                      # my username/email, basic settings, gh
 │       └── shell-env.nix                # my shell environment - zsh, starship, kitty, helix, cli tools every host uses
@@ -90,7 +90,7 @@ Modules never import other modules. Each `configuration.nix` and `home.nix` list
 
 ## Why did I build it this way?
 
-I chose to use flakes and home-manager. Flakes provide a single foundation for each of my hosts and the flake.lock that pins my versions of nixpkgs and home-manager which helps manage all of my machines from a single repo. Home-manager as a NixOS module means that a single `nixos-rebuild switch` on my hosts applies to the system AND the user config in one go. Flaptak being included alongside nix gives you a way to install packages which follow their own update cycle and are not tied to this config. For the Mac specifically, I could have chose to use `nix-darwin` which has much better integration with MacOS allowing you to controll MacOS settings and homebrew casks declaratively. I chose not to do this, it is my only Apple machine. I control all shell and tui packages through nix and all of my GUI apps from .dmg and the app store.
+I chose to use flakes and home-manager. Flakes provide a single foundation for each of my hosts and the flake.lock that pins my versions of nixpkgs and home-manager which helps manage all of my machines from a single repo. Home-manager as a NixOS module means that a single `nixos-rebuild switch` on my hosts applies to the system AND the user config in one go. Flaptak being included alongside nix gives you a way to install packages which follow their own update cycle and are not tied to this config. For the Mac specifically, I could have chose to use `nix-darwin` which has much better integration with MacOS allowing you to controll MacOS settings and homebrew casks declaratively. I chose not to do this, it is my only Apple machine. I control all shell and tui packages through nix and all of my GUI apps through a plain `Brewfile` (casks) in `hosts/macbook`, plus the app store. If I ever want homebrew itself to be declarative, that's the point to reconsider nix-darwin.
 
 ## Setting Up a New Host
 

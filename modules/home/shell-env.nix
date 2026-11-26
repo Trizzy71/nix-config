@@ -9,7 +9,6 @@
   # shared by every host, mac included - linux-only stuff doesn't go here
   home.packages = with pkgs; [
     asciiquarium
-    fzf # fuzzy finding
     btop # tui resource monitor
     tldr # simplified man pages
     fastfetch # fast system information
@@ -26,6 +25,15 @@
     duf # disk free, readable
     curl
     rsync
+    hyperfine # benchmark a command
+    tokei # lines of code per language
+    dust # disk usage as a tree
+    procs # ps, readable
+    sd # sed, simpler
+    tree # directory tree
+    mtr # traceroute + ping in one
+    dnsutils # dig
+    watch # rerun a command every few seconds, mac doesn't ship it
   ];
 
   # -SESSION VARIABLES-
@@ -39,6 +47,13 @@
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true; # suggest commands while typing
+    history = {
+      size = 50000; # lines kept in memory
+      save = 50000; # lines kept on disk
+      ignoreAllDups = true; # a repeated command only shows up once
+      ignoreSpace = true; # a command starting with a space isn't saved
+      share = true; # every open terminal sees the others' history
+    };
     syntaxHighlighting.enable = true; # syntax highlighting
     shellAliases = {
       # aliases for *every* host
@@ -133,6 +148,9 @@
     enable = true;
     settings.hidden = true; # show hidden files
   };
+
+  # -FZF-
+  programs.fzf.enable = true; # ctrl+r history search, ctrl+t file picker, alt+c cd
 
   # -ZOXIDE-
   programs.zoxide.enable = true; # jump to frecent dirs with z

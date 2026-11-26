@@ -2,6 +2,10 @@
 
 Cheat sheet for the tooling in `modules/home/dev.nix` (per-language toolchains and cross-language tools) - not a tutorial for any of these, just enough to remember what each thing is for and how to actually run it.
 
+### Node
+
+- `node` and `npm` come from `dev.nix`. For a project that needs a specific version, use a direnv flake instead.
+
 ### Rust
 
 - `rustup` manages the toolchain. `rustup show` tells you what's installed. `cargo` is what you actually use day to day.
