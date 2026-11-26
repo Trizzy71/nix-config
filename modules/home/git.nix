@@ -15,11 +15,11 @@
     enable = true;
     settings = {
       user = {
-        Name = "tristan";                         # username
-        Email = "tristan.m.peterson@gmail.com";   # email
+        name = "tristan"; # username
+        email = "tristan.m.peterson@gmail.com"; # email
       };
-      init.defaultBranch = "main";                # default branch
-      pull.rebase = false;                        # plain merge on git pull
+      init.defaultBranch = "main"; # default branch
+      pull.rebase = false; # plain merge on git pull
     };
   };
 }

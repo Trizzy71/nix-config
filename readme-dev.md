@@ -1,6 +1,6 @@
 ## Dev Tools
 
-Cheat sheet for the tooling in `modules/languages.nix` (per-language toolchains) and `modules/dev-tools.nix` (cross-language tools) - not a tutorial for any of these, just enough to remember what each thing is for and how to actually run it.
+Cheat sheet for the tooling in `modules/home/dev.nix` (per-language toolchains and cross-language tools) - not a tutorial for any of these, just enough to remember what each thing is for and how to actually run it.
 
 ### Rust
 
@@ -31,7 +31,7 @@ Cheat sheet for the tooling in `modules/languages.nix` (per-language toolchains)
 - `deadnix .` lists unused bindings/imports, `deadnix -e .` edits them out in place.
 - `nixd` is the LSP - the editor uses it, I don't call it directly. It evaluates against the actual flake so it knows real option types, not guesses.
 - `nix flake check` evaluates every output in this flake without building - the fast way to catch a typo'd option or broken import.
-- `nix repl .` drops into a repl with this flake's outputs loaded, handy for poking at `nixosConfigurations.tristan.config.something` without a full rebuild.
+- `nix repl .` drops into a repl with this flake's outputs loaded, handy for poking at `nixosConfigurations.jensen.config.something` without a full rebuild.
 
 ### Python
 
@@ -43,7 +43,7 @@ Cheat sheet for the tooling in `modules/languages.nix` (per-language toolchains)
 - `ruff format .` formats - this replaces `black`.
 - `pyright` is the LSP, same deal as the others - the editor uses it for types and autocomplete, I don't call it directly.
 
-### Cross-language (`dev-tools.nix`)
+### Cross-language
 
 - `just` is a command runner - drop a `justfile` in a project with `build`, `test`, `run` recipes so I don't have to remember if it's `cargo test`, `go test ./...`, or `uv run pytest` for this one. Same muscle memory either way.
 - `claude-code` - `claude` in a project directory.

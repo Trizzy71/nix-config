@@ -1,14 +1,13 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 # Macbook
-# this file pulls these four .nix files into home-manager
+# standalone home-manager - shell/cli/dev tools from nix, gui apps from .dmg and the app store
 
 {
   imports = [
-    ../../modules/shell.nix
-    ../../modules/git.nix
-    ../../modules/dev-tools.nix
-    ../../modules/languages.nix
+    ../../modules/home/shell.nix
+    ../../modules/home/git.nix
+    ../../modules/home/dev.nix
   ];
 
   home.username = "tristan";
@@ -17,8 +16,8 @@
 
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-    # No system profile on a standalone home-manager host; the NixOS hosts get
-    # these from modules/base-system.nix.
+    # no system profile on a standalone home-manager host; the NixOS hosts get
+    # these from modules/nixos/base.nix
     nano
     wget
   ];

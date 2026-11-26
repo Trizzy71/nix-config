@@ -1,6 +1,19 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, inputs, ... }:
+
+# -AI- (parked, not imported by any host)
+# whisper speech-to-text + local ollama, both built with CUDA.
+# to bring back: add to a host's home.nix imports, and on that host's system side:
+#   programs.ydotool.enable = true;
+#   users.users.<user>.extraGroups = [ "ydotool" ];
+# heads up: cache.nixos.org doesn't carry CUDA builds - add the CUDA binary cache
+# first or every update compiles these from source.
 
 let
+  unstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs.stdenv.hostPlatform) system;
+    config.allowUnfree = true;
+  };
+
   whisper-cpp-cuda = pkgs.whisper-cpp.override { cudaSupport = true; };
 
   whisperModel = pkgs.fetchurl {
@@ -25,7 +38,7 @@ let
     text=$(${whisper-cpp-cuda}/bin/whisper-cli -m ${whisperModel} -f "$tmpfile" -nt --no-prints)
 
     echo "$text"
-    exec ${pkgs-unstable.claude-code}/bin/claude "$text"
+    exec ${unstable.claude-code}/bin/claude "$text"
   '';
 
   voiceTypeDo = pkgs.writeShellScriptBin "voice-type-do" ''

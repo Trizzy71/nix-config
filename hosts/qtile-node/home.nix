@@ -1,16 +1,15 @@
-{ config, pkgs, ... }:
+{ ... }:
 
+# tristan's user environment on exit nodes - shell and git only
 {
   imports = [
-    ../../modules/shell.nix
-    ../../modules/git.nix
+    ../../modules/home/shell.nix
+    ../../modules/home/git.nix
   ];
 
   home.username = "tristan";
   home.homeDirectory = "/home/tristan";
   home.stateVersion = "26.05";
-
-  programs.zsh.shellAliases.nrs = "sudo nixos-rebuild switch --flake ~/repos/nix-config#qtile-node";
 
   programs.home-manager.enable = true;
 }

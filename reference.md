@@ -1,14 +1,15 @@
 ## Reference
 - Want to test a package without installing? Use: `nix run nixpkgs#package-name`
-- Every host has a rebuild alias in its `home.nix`:
-  - NixOS hosts: `nrs` (`nixos-rebuild switch ...`)
-  - standalone home-manager hosts: `hms` (`home-manager switch ...`)
+- Rebuild aliases:
+  - NixOS hosts: `nrs` - defined once in `modules/nixos/base.nix`. No `#host` needed, `nixos-rebuild` picks the flake host matching the machine's hostname
+  - macbook: `hms` (`home-manager switch ...`), in `hosts/macbook/home.nix`
+- `nix fmt` formats every .nix file in the repo
 
 ## Rebuild commands
 NixOS host:
 
 ```
-sudo nixos-rebuild switch --flake ~/repos/nix-config#tristan
+sudo nixos-rebuild switch --flake ~/repos/nix-config#jensen
 ```
 
 - `switch` can be swapped for `boot` if there are huge changes.
@@ -32,11 +33,13 @@ For a brand new install from scratch (partitioning, hardware-configuration.nix, 
 ## Channel policy
 Quick note (note by `claude-code`) for keeping track of the channels.
 
-Both inputs are pinned to the **26.05 release branch**, not `nixos-unstable`:
+`nixpkgs` and `home-manager` are pinned to the **26.05 release branch**:
 
 - `nixpkgs` → `nixos-26.05`
 - `home-manager` → `release-26.05`
 
-This is important because home-manager's options only sync up with `nixpkgs` within a release. So they’re versioned together on purpose. When you run `nix flake update`, expect backported fixes instead of months of changes. Don’t forget to commit `flake.lock` after every update!
+This is important because home-manager's options only sync up with `nixpkgs` within a release. So they're versioned together on purpose. When you run `nix flake update`, expect backported fixes instead of months of changes. Don't forget to commit `flake.lock` after every update!
 
-Remember, `system.stateVersion` records the release a host was first installed with, should never be changed. This setting can be found in each `hosts/*/configuration.nix`.
+`nixpkgs-unstable` is the exception, for the few packages that need to move faster (claude-code). It's imported right where it's used - see the `let unstable = ...` at the top of `modules/home/dev.nix`. Copy that pattern if something else needs unstable.
+
+Remember, `system.stateVersion` records the release a host was first installed with, should never be changed. This setting can be found in each `hosts/*/configuration.nix` (and `home.stateVersion` in each `home.nix`).

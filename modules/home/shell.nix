@@ -2,10 +2,10 @@
 
 {
   # -PATH-
-  home.sessionPath = [ "$HOME/.local/bin"];
+  home.sessionPath = [ "$HOME/.local/bin" ];
 
-  # -UNMANAGED PACKAGES-
-  # nano and wget come from the system profile (modules/base-system.nix).
+  # -PACKAGES-
+  # shared by every host, mac included - keep linux-only tools in daily-tools.nix
   home.packages = with pkgs; [
     asciiquarium
     lf # tui file manager
@@ -91,18 +91,18 @@
 
   # -HELIX CONFIGURATION-
   # named ANSI colors, palette comes from kitty
-   xdg.configFile."helix/themes/kitty-ansi.toml".text = ''
-     "comment" = { fg = "gray", modifiers = ["italic"] }
-     "keyword" = "magenta"
-     "string" = "green"
-     "function" = "blue"
-     "type" = "yellow"
-     "constant" = "cyan"
-     "constant.numeric" = "cyan"
-     "variable.builtin" = "red"
-     "operator" = "cyan"
-     "ui.selection" = { bg = "blue" }
-   '';
+  xdg.configFile."helix/themes/kitty-ansi.toml".text = ''
+    "comment" = { fg = "gray", modifiers = ["italic"] }
+    "keyword" = "magenta"
+    "string" = "green"
+    "function" = "blue"
+    "type" = "yellow"
+    "constant" = "cyan"
+    "constant.numeric" = "cyan"
+    "variable.builtin" = "red"
+    "operator" = "cyan"
+    "ui.selection" = { bg = "blue" }
+  '';
 
   programs.helix = {
     enable = true;

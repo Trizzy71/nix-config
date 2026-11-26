@@ -1,12 +1,23 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
-# -LANGUAGES-
-# toolchains + lsp/lint/fmt for rust, go, and nix
+# -DEV-
+# toolchains + lsp/lint/fmt per language, plus cross-language tools
+
+let
+  # nixos-unstable, for the few packages that need to move faster than stable
+  unstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs.stdenv.hostPlatform) system;
+    config.allowUnfree = true; # claude-code is unfree
+  };
+in
 {
   home.packages = with pkgs; [
+    # -CROSS-LANGUAGE-
+    just # command runner
+    unstable.claude-code # from unstable so it updates faster than nixos-26.05
+
     # -RUST-
     rustup # manages rust toolchains - gives you cargo, rustc, clippy, rustfmt
-    # rust-analyzer # lsp for rust - needed for the editor to be useful
     cargo-watch # rebuilds and reruns on file changes
     cargo-edit # cargo add/rm/upgrade from the command line
     cargo-expand # shows the code after macro expansion
@@ -35,4 +46,11 @@
     # -C-
     gcc
   ];
+
+  # -DIRENV-
+  # auto-loads a project's env when you cd in, unloads when you cd out
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true; # caches nix shells so they don't rebuild every time
+  };
 }

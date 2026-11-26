@@ -1,6 +1,6 @@
 ## CLI Tools
 
-Cheat sheet for everything in `modules/shell.nix` - what each thing is and the commands I'll actually forget.
+Cheat sheet for everything in `modules/home/shell.nix` - what each thing is and the commands I'll actually forget.
 
 ### Navigation
 
@@ -35,7 +35,7 @@ Cheat sheet for everything in `modules/shell.nix` - what each thing is and the c
 ### Terminal (kitty)
 
 - New tab: `Ctrl+Shift+t`. New split: `Ctrl+Shift+Enter`. Cycle layout (tall/stack): `Ctrl+Shift+l`.
-- Background opacity/blur, font, and theme are all set in `shell.nix` already - nothing to configure here.
+- Background opacity/blur, font, and theme are all set in `modules/home/shell.nix` already - nothing to configure here.
 
 ### Prompt (starship)
 
