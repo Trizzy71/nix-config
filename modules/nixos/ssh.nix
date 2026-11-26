@@ -1,8 +1,7 @@
 { ... }:
 
 # -SSH-
-# config for secure shell access
-# The public key here will be imported by all exit nodes
+# config for secure shell access. keys live in each user's module
 {
   services.openssh = {
     enable = true;
@@ -10,11 +9,5 @@
       PasswordAuthentication = false;
       PermitRootLogin = "no";
     };
-  };
-
-  users.users.tristan = {
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDZVLStwmxT0sVSFSt745kD9XbW0NFrxUxWPDOpdsdIQ tristan.m.peterson@gmail.com"
-    ];
   };
 }

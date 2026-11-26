@@ -44,29 +44,35 @@ nix-config
 │   └── qtile-node                       # tailscale exit node - generic, installs on any x86_64 UEFI box
 │       ├── configuration.nix
 │       ├── hardware-generic.nix         # hand-written, finds disks by label instead of UUID
-│       └── home.nix                     # shell + git only
+│       └── home.nix                     # shell, git, firefox
 ├── modules
 │   ├── nixos                            # system-wide - imported by a host's configuration.nix
-│   │   ├── base.nix                     # every NixOS host - boot, network, locale, nix, home-manager, `nrs`
-│   │   ├── desktop.nix                  # plasma, pipewire, bluetooth, fonts, printing
-│   │   ├── desktop-suite.nix            # KDE apps, libreoffice, obs, utilities
+│   │   ├── base.nix                     # every NixOS host - boot, network, locale, nix, home-manager, `nrs`, fwupd
+│   │   ├── plasma.nix                   # the desktop (plasma 6) - swap for another desktop and keep the rest
+│   │   ├── display-manager.nix          # sddm login screen, wayland
+│   │   ├── audio.nix                    # pipewire, rtkit
+│   │   ├── bluetooth.nix                # bluetooth stack
+│   │   ├── fonts.nix                    # font packages
+│   │   ├── lan.nix                      # avahi, printing, kdeconnect, krfb port
+│   │   ├── desktop-apps.nix             # KDE apps, libreoffice, obs, system-wide
 │   │   ├── flatpak.nix                  # flatpak + flathub remote
-│   │   ├── gaming.nix                   # steam, launchers, power/thermal diag, sober (pulls in flatpak.nix)
+│   │   ├── gaming.nix                   # steam, launchers, sober (host also imports flatpak.nix)
+│   │   ├── power.nix                    # cpu governor, nvtop, s-tui, powertop, lm_sensors
 │   │   ├── gpu-amd.nix                  # amd settings, vulkan
 │   │   ├── gpu-nvidia.nix               # nvidia settings, open kernel, power management
 │   │   ├── ssh.nix                      # openssh, key-only login
-│   │   ├── tailscale-exit-node.nix      # tailscale, advertises as an exit node
+│   │   ├── tailscale.nix                # joins the tailnet
+│   │   ├── tailscale-exit-node.nix      # advertises as an exit node (host also imports tailscale.nix)
 │   │   ├── user-taryn.nix               # user account
-│   │   └── user-tristan.nix             # user account
+│   │   └── user-tristan.nix             # user account + ssh key
 │   └── home                             # per-user - imported by a host's home.nix, also works on the mac
-│       ├── ai.nix                       # parked - whisper + local ollama (CUDA), not imported by any host
-│       ├── apps.nix                     # gui apps - obsidian, zed, spotify, discord, signal, telegram
-│       ├── daily-tools.nix              # linux-only terminal utilities
-│       ├── dev.nix                      # rust/go/nix/python toolchains, claude-code, just, direnv
-│       ├── git.nix                      # my username/email, basic settings
-│       └── shell.nix                    # zsh, starship, kitty, helix, cli tools - every host
+│       ├── ai.nix                       # claude-code from unstable
+│       ├── apps.nix                     # gui apps - firefox, obsidian, zed, spotify, discord, signal, telegram, mpv, clipboard
+│       ├── dev.nix                      # rust/go/nix/python toolchains, just, direnv
+│       ├── git.nix                      # my username/email, basic settings, gh
+│       └── shell-env.nix                # my shell environment - zsh, starship, kitty, helix, cli tools every host uses
 ├── readme.md                            # you are here
-├── readme-cli.md                        # cheat-sheet for CLI tools in modules/home/shell.nix
+├── readme-cli.md                        # cheat-sheet for CLI tools in modules/home/shell-env.nix
 ├── readme-dev.md                        # cheat-sheet for modules/home/dev.nix
 └── reference.md                         # quick commands and notes
 ```
@@ -79,6 +85,8 @@ nix-config
 4. Any module - each one is a small, self-contained chunk you can copy into your own config.
 
 `modules/nixos` files only work in a `configuration.nix`, `modules/home` files only work in a `home.nix`. Mixing them up is the classic "option does not exist" error.
+
+Modules never import other modules. Each `configuration.nix` and `home.nix` lists everything that machine or user gets, so you can read one file and know the whole picture.
 
 ## Why did I build it this way?
 

@@ -8,6 +8,7 @@
     ../../modules/nixos/base.nix
     ../../modules/nixos/user-tristan.nix
     ../../modules/nixos/ssh.nix
+    ../../modules/nixos/tailscale.nix
     ../../modules/nixos/tailscale-exit-node.nix
   ];
 
@@ -28,8 +29,6 @@
     enable = true;
     windowManager.qtile.enable = true;
   };
-
-  programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim

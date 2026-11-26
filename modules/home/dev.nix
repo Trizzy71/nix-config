@@ -1,20 +1,11 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 # -DEV-
 # toolchains + lsp/lint/fmt per language, plus cross-language tools
-
-let
-  # nixos-unstable, for the few packages that need to move faster than stable
-  unstable = import inputs.nixpkgs-unstable {
-    inherit (pkgs.stdenv.hostPlatform) system;
-    config.allowUnfree = true; # claude-code is unfree
-  };
-in
 {
   home.packages = with pkgs; [
     # -CROSS-LANGUAGE-
     just # command runner
-    unstable.claude-code # from unstable so it updates faster than nixos-26.05
 
     # -RUST-
     rustup # manages rust toolchains - gives you cargo, rustc, clippy, rustfmt

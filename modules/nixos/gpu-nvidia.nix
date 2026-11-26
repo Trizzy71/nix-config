@@ -16,6 +16,4 @@
     powerManagement.enable = true; # suspend/resume - fixes black screen waking from sleep
     nvidiaPersistenced = true; # locks power state while `ALT+TAB`
   };
-
-  environment.systemPackages = [ pkgs.nvtopPackages.nvidia ]; # shows power states
 }

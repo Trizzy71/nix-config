@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 # -APPS-
-# personal gui apps, on top of what desktop-suite.nix ships system-wide
+# personal gui apps, on top of what desktop-apps.nix ships system-wide
 {
   programs.firefox.enable = true;
 
@@ -9,6 +9,11 @@
     obsidian
     zed-editor
     spotify
+    mpv # media player
+
+    # the session is wayland-only - wl-clipboard is what helix and native apps use, xclip is for xwayland
+    wl-clipboard
+    xclip
 
     # -COMMUNICATION-
     vesktop # discord

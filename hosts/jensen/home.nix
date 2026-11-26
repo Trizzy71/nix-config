@@ -3,11 +3,11 @@
 # tristan's user environment on jensen
 {
   imports = [
-    ../../modules/home/shell.nix
+    ../../modules/home/shell-env.nix
     ../../modules/home/git.nix
     ../../modules/home/dev.nix
+    ../../modules/home/ai.nix
     ../../modules/home/apps.nix
-    ../../modules/home/daily-tools.nix
   ];
 
   home.username = "tristan";

@@ -46,7 +46,7 @@ Cheat sheet for the tooling in `modules/home/dev.nix` (per-language toolchains a
 ### Cross-language
 
 - `just` is a command runner - drop a `justfile` in a project with `build`, `test`, `run` recipes so I don't have to remember if it's `cargo test`, `go test ./...`, or `uv run pytest` for this one. Same muscle memory either way.
-- `claude-code` - `claude` in a project directory.
+- `claude-code` - `claude` in a project directory. It comes from `modules/home/ai.nix` now, not `dev.nix`.
 
 ### direnv
 

@@ -1,100 +1,13 @@
 { pkgs, inputs, ... }:
 
-# -AI- (parked, not imported by any host)
-# whisper speech-to-text + local ollama, both built with CUDA.
-# to bring back: add to a host's home.nix imports, and on that host's system side:
-#   programs.ydotool.enable = true;
-#   users.users.<user>.extraGroups = [ "ydotool" ];
-# heads up: cache.nixos.org doesn't carry CUDA builds - add the CUDA binary cache
-# first or every update compiles these from source.
-
+# -AI-
+# claude-code from nixpkgs-unstable so it updates faster than the 26.05 release.
 let
   unstable = import inputs.nixpkgs-unstable {
     inherit (pkgs.stdenv.hostPlatform) system;
-    config.allowUnfree = true;
+    config.allowUnfree = true; # claude-code is unfree
   };
-
-  whisper-cpp-cuda = pkgs.whisper-cpp.override { cudaSupport = true; };
-
-  whisperModel = pkgs.fetchurl {
-    url = "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin";
-    hash = "sha256-oDd5yG3zMjB19eeWyyzlAp8A7Ihp7uP9+4l6/jbG0AI=";
-  };
-
-  claudeVoice = pkgs.writeShellScriptBin "claude-voice" ''
-    set -euo pipefail
-
-    tmpfile=$(mktemp --suffix=.wav)
-    trap 'rm -f "$tmpfile"' EXIT
-
-    echo "recording... press enter to stop"
-    ${pkgs.pipewire}/bin/pw-record --rate 16000 --channels 1 "$tmpfile" &
-    rec_pid=$!
-    read -r
-    kill "$rec_pid" 2>/dev/null || true
-    wait "$rec_pid" 2>/dev/null || true
-
-    echo "transcribing..."
-    text=$(${whisper-cpp-cuda}/bin/whisper-cli -m ${whisperModel} -f "$tmpfile" -nt --no-prints)
-
-    echo "$text"
-    exec ${unstable.claude-code}/bin/claude "$text"
-  '';
-
-  voiceTypeDo = pkgs.writeShellScriptBin "voice-type-do" ''
-    set -euo pipefail
-    export YDOTOOL_SOCKET=/run/ydotoold/socket
-    export YDOTOOL_TEXT="$1"
-    exec sg ydotool -c '${pkgs.ydotool}/bin/ydotool type -- "$YDOTOOL_TEXT"'
-  '';
-
-  voiceType = pkgs.writeShellScriptBin "voice-type" ''
-    set -euo pipefail
-
-    runtime_dir="''${XDG_RUNTIME_DIR:-/tmp}"
-    pidfile="$runtime_dir/voice-type.pid"
-    wavfile="$runtime_dir/voice-type.wav"
-
-    if [[ -f "$pidfile" ]]; then
-      pid=$(cat "$pidfile")
-      kill "$pid" 2>/dev/null || true
-      wait "$pid" 2>/dev/null || true
-      rm -f "$pidfile"
-
-      ${pkgs.libnotify}/bin/notify-send "voice-type" "transcribing..."
-      text=$(${whisper-cpp-cuda}/bin/whisper-cli -m ${whisperModel} -f "$wavfile" -nt --no-prints)
-      rm -f "$wavfile"
-
-      ${voiceTypeDo}/bin/voice-type-do "$text"
-    else
-      ${pkgs.libnotify}/bin/notify-send "voice-type" "recording..."
-      ${pkgs.pipewire}/bin/pw-record --rate 16000 --channels 1 "$wavfile" &
-      echo $! > "$pidfile"
-    fi
-  '';
 in
 {
-  home.packages = with pkgs; [
-    whisper-cpp-cuda
-    ollama-cuda
-    pipewire
-    libnotify
-    claudeVoice
-    voiceType
-    voiceTypeDo
-  ];
-
-  systemd.user.services.ollama = {
-    Unit = {
-      Description = "ollama server for local large language models";
-    };
-    Service = {
-      ExecStart = "${pkgs.ollama-cuda}/bin/ollama serve";
-      Environment = [ "OLLAMA_FLASH_ATTENTION=1" ];
-      Restart = "on-failure";
-    };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-  };
+  home.packages = [ unstable.claude-code ];
 }

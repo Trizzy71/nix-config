@@ -1,6 +1,6 @@
 { pkgs, ... }:
 # -GIT-
-# both the  program and it's configuration
+# both the program and its configuration
 {
   home.packages = with pkgs; [
     gh # github cli - PRs, issues, CI status, separate from git itself

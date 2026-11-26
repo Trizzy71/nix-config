@@ -1,6 +1,6 @@
 ## CLI Tools
 
-Cheat sheet for everything in `modules/home/shell.nix` - what each thing is and the commands I'll actually forget.
+Cheat sheet for everything in `modules/home/shell-env.nix` - what each thing is and the commands I'll actually forget.
 
 ### Navigation
 
@@ -31,11 +31,17 @@ Cheat sheet for everything in `modules/home/shell.nix` - what each thing is and 
 ### Files / text
 
 - `bat` - `cat` with syntax highlighting and line numbers. `bat file`, `bat --list-themes` to browse themes.
+- `rg` - ripgrep. `rg pattern` searches file contents recursively, `rg -l pattern` just lists the files, `rg -i` ignores case.
+- `fd` - find, simpler. `fd name` finds by name, `fd -e nix` finds by extension.
+- `jq` - json. `jq . file.json` pretty-prints, `curl -s <url> | jq '.key'` pulls out one field.
+- `ncdu` - `ncdu` in a folder to see what's eating space, arrows to dig in. `duf` for a quick view of mounted drives.
+- `rsync` - `rsync -avh src/ dest/` to copy or sync. A trailing slash on `src` copies its contents, not the folder.
+- `unzip` / `7z` - `unzip file.zip`, `7z x file.7z`.
 
 ### Terminal (kitty)
 
 - New tab: `Ctrl+Shift+t`. New split: `Ctrl+Shift+Enter`. Cycle layout (tall/stack): `Ctrl+Shift+l`.
-- Background opacity/blur, font, and theme are all set in `modules/home/shell.nix` already - nothing to configure here.
+- Font and theme are set in `modules/home/shell-env.nix` already - nothing to configure here.
 
 ### Prompt (starship)
 

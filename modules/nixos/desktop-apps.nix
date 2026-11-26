@@ -1,12 +1,8 @@
 { pkgs, ... }:
 
-# -DESKTOP APP SUITE-
-# roughly matches what KDE ships with
-
+# -DESKTOP APPS-
+# gui apps that ship system-wide, roughly what KDE ships with
 {
-  programs.kdeconnect.enable = true; # phone cursor control
-  networking.firewall.allowedTCPPorts = [ 5900 ]; # krfb remote desktop control
-
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
@@ -45,7 +41,7 @@
       ksystemlog # GUI journal reader
 
       # -REMOTE DESKTOP- KDE defaults
-      krfb # share this screen (VNC)
+      krfb # share this screen (VNC) - port opened in lan.nix
       krdc # connect to another machine (VNC/RDP) - needs no open port
     ]);
 }

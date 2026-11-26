@@ -5,9 +5,10 @@
 
 {
   imports = [
-    ../../modules/home/shell.nix
+    ../../modules/home/shell-env.nix
     ../../modules/home/git.nix
     ../../modules/home/dev.nix
+    ../../modules/home/ai.nix
   ];
 
   home.username = "tristan";

@@ -3,9 +3,8 @@
 # taryn's user environment - shell and everyday apps, no dev toolchains
 {
   imports = [
-    ../../modules/home/shell.nix
+    ../../modules/home/shell-env.nix
     ../../modules/home/apps.nix
-    ../../modules/home/daily-tools.nix
   ];
 
   home.username = "taryn";

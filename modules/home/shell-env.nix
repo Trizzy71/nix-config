@@ -1,14 +1,14 @@
 { pkgs, ... }:
 
+# my shell environment - zsh, prompt, terminal, and the cli tools i use everywhere (mac included)
 {
   # -PATH-
   home.sessionPath = [ "$HOME/.local/bin" ];
 
   # -PACKAGES-
-  # shared by every host, mac included - keep linux-only tools in daily-tools.nix
+  # shared by every host, mac included - linux-only stuff doesn't go here
   home.packages = with pkgs; [
     asciiquarium
-    lf # tui file manager
     fzf # fuzzy finding
     btop # tui resource monitor
     tldr # simplified man pages
@@ -17,6 +17,15 @@
     eza # ls replacement
     tmux
     zellij
+    ripgrep # grep, but fast
+    fd # find, but simpler
+    jq # json on the command line
+    unzip
+    p7zip
+    ncdu # disk usage, interactive
+    duf # disk free, readable
+    curl
+    rsync
   ];
 
   # -SESSION VARIABLES-

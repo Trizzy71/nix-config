@@ -6,10 +6,16 @@
     ./hardware-configuration.nix # generated on install - disks, kernel modules
     ../../modules/nixos/base.nix
     ../../modules/nixos/user-taryn.nix
-    ../../modules/nixos/desktop.nix
-    ../../modules/nixos/desktop-suite.nix
+    ../../modules/nixos/plasma.nix
+    ../../modules/nixos/display-manager.nix
+    ../../modules/nixos/audio.nix
+    ../../modules/nixos/bluetooth.nix
+    ../../modules/nixos/fonts.nix
+    ../../modules/nixos/lan.nix
+    ../../modules/nixos/desktop-apps.nix
     ../../modules/nixos/flatpak.nix
     ../../modules/nixos/gaming.nix
+    ../../modules/nixos/power.nix
     ../../modules/nixos/gpu-amd.nix
   ];
 

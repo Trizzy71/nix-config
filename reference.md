@@ -40,6 +40,8 @@ Quick note (note by `claude-code`) for keeping track of the channels.
 
 This is important because home-manager's options only sync up with `nixpkgs` within a release. So they're versioned together on purpose. When you run `nix flake update`, expect backported fixes instead of months of changes. Don't forget to commit `flake.lock` after every update!
 
-`nixpkgs-unstable` is the exception, for the few packages that need to move faster (claude-code). It's imported right where it's used - see the `let unstable = ...` at the top of `modules/home/dev.nix`. Copy that pattern if something else needs unstable.
+`nixpkgs-unstable` is the exception, for the few packages that need to move faster (claude-code). It's imported right where it's used - see the `let unstable = ...` at the top of `modules/home/ai.nix`. Copy that pattern if something else needs unstable.
+
+To pull a newer claude-code: `nix flake update nixpkgs-unstable`, rebuild, then commit `flake.lock`. Which model it uses is set by claude-code and your account, not nix.
 
 Remember, `system.stateVersion` records the release a host was first installed with, should never be changed. This setting can be found in each `hosts/*/configuration.nix` (and `home.stateVersion` in each `home.nix`).

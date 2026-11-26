@@ -18,6 +18,7 @@
   console.keyMap = "us";
 
   services.fstrim.enable = true;
+  services.fwupd.enable = true; # firmware updates
   zramSwap.enable = true;
 
   programs.zsh.enable = true;
@@ -28,6 +29,8 @@
     git # needed to pull this repo on every machine
     nano
     wget
+    pciutils # lspci - what hardware is in here
+    usbutils # lsusb
   ];
 
   # rebuild this machine - nixos-rebuild picks the flake host matching the hostname
